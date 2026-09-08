@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">NordicPaws</string>
+
+    <string name="app_name">Nordic Paws</string>
+
+    <string name="welcome_small_title">Complete Care for</string>
+    <string name="welcome_title">Happy Pets</string>
+    <string name="get_started">Get Started</string>
+
 </resources>
