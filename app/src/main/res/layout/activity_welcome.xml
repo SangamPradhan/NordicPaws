@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_cream"
+    android:fitsSystemWindows="true"
+    tools:context=".WelcomeActivity">
+
+    <!--
+        Top content group
+        Everything is constrained rather than positioned
+        with absolute coordinates.
+    -->
+
+
+    <!--
+        Dog image
+        The ImageView occupies the remaining available space.
+        0dp height + top/bottom constraints = responsive sizing.
+    -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/welcomeHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/welcome_horizontal_margin"
+        android:layout_marginEnd="@dimen/welcome_horizontal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Left decorative mark -->
+
+        <ImageView
+            android:id="@+id/leftSpark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_welcome_spark"
+            app:layout_constraintBottom_toBottomOf="@id/smallTitle"
+            app:layout_constraintEnd_toStartOf="@id/smallTitle" />
+
+        <!-- Small heading -->
+
+        <TextView
+            android:id="@+id/smallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/plusjakartasanslight"
+            android:text="@string/welcome_small_title"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/welcome_small_text_size"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Right decorative mark -->
+
+        <ImageView
+            android:id="@+id/rightSpark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:rotation="90"
+            android:src="@drawable/ic_welcome_spark"
+            app:layout_constraintBottom_toBottomOf="@id/smallTitle"
+            app:layout_constraintStart_toEndOf="@id/smallTitle" />
+
+        <!-- Main heading -->
+
+        <TextView
+            android:id="@+id/welcomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/plusjakartasanslight"
+            android:includeFontPadding="false"
+            android:text="@string/welcome_title"
+            android:textColor="@color/primary_black"
+            android:textSize="@dimen/welcome_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/smallTitle" />
+
+        <!-- Get Started -->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/getStartedButton"
+            android:layout_width="@dimen/welcome_button_width"
+            android:layout_height="@dimen/welcome_button_height"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primary_black"
+            android:fontFamily="@font/plusjakartasansegular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/get_started"
+            android:textAllCaps="false"
+            android:textColor="@color/surface_white"
+            android:textSize="@dimen/welcome_button_text_size"
+            app:cornerRadius="@dimen/welcome_button_radius"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/dogImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dog_welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeHeader"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
