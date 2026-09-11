@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Pale blue circle -->
+    <item
+        android:width="42dp"
+        android:height="42dp">
+
+        <shape android:shape="oval">
+            <solid android:color="#EFF4FF" />
+        </shape>
+
+    </item>
+
+    <!-- Lock icon -->
+    <item
+        android:width="22dp"
+        android:height="22dp"
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp">
+
+        <bitmap
+            android:src="@drawable/ic_lock"
+            android:gravity="center" />
+
+    </item>
+
+</layer-list>
