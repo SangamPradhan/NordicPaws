@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_cream"
+    android:background="@color/secondary_yellow"
     android:fitsSystemWindows="true"
     tools:context=".WelcomeActivity">
 
@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/leftSpark"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/welcome_spark_size"
+            android:layout_height="@dimen/welcome_spark_size"
             android:layout_marginEnd="8dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_welcome_spark"
@@ -52,8 +52,8 @@
             android:id="@+id/smallTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:fontFamily="@font/plusjakartasanslight"
+            android:layout_marginTop="72dp"
+            android:fontFamily="@font/plusjakartasanssemibold"
             android:text="@string/welcome_small_title"
             android:textColor="@color/primary_black"
             android:textSize="@dimen/welcome_small_text_size"
@@ -61,20 +61,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <!-- Right decorative mark -->
 
         <ImageView
             android:id="@+id/rightSpark"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/welcome_spark_size"
+            android:layout_height="@dimen/welcome_spark_size"
             android:layout_marginStart="8dp"
             android:contentDescription="@null"
             android:rotation="90"
             android:src="@drawable/ic_welcome_spark"
             app:layout_constraintBottom_toBottomOf="@id/smallTitle"
             app:layout_constraintStart_toEndOf="@id/smallTitle" />
-
         <!-- Main heading -->
 
         <TextView
@@ -82,16 +80,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:fontFamily="@font/plusjakartasanslight"
+            android:fontFamily="@font/plusjakartasbold"
             android:includeFontPadding="false"
             android:text="@string/welcome_title"
             android:textColor="@color/primary_black"
             android:textSize="@dimen/welcome_title_text_size"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/smallTitle" />
-
         <!-- Get Started -->
 
         <com.google.android.material.button.MaterialButton
