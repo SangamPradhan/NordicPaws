@@ -5,11 +5,12 @@
 
     <!-- Nordic Paws Brand Colors -->
     <color name="primary_black">#121316</color>
-    <color name="secondary_yellow">#FDE68A</color>
+    <color name="secondary_yellow">#F9E38A</color>
     <color name="tertiary_peach">#FED7AA</color>
     <color name="neutral_slate">#475569</color>
 
     <!-- Surfaces -->
     <color name="surface_white">#FFFFFF</color>
     <color name="background_cream">#FFF8EC</color>
+    <color name="bg_cream">#F8F9FF</color>
 </resources>
