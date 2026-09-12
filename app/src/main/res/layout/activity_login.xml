@@ -1,360 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--
+    Root is NestedScrollView so the form can scroll on small screens.
+    fillViewport=true means it will expand to full height on large screens.
+    android:id="@+id/main" stays here so LoginActivity can attach WindowInsets.
+-->
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_cream"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp"
-    android:fitsSystemWindows="true"
+    android:fillViewport="true"
     tools:context=".LoginActivity">
 
-    <!-- Back button -->
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Go back"
-        android:padding="10dp"
-        android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- Top right portal badge -->
-
-    <TextView
-        android:id="@+id/carePortalBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/bg_care_portal"
-        android:fontFamily="@font/plusjakartasbold"
-        android:paddingStart="10dp"
-        android:paddingTop="3dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="3dp"
-        android:text="• CARE PORTAL"
-        android:textColor="@color/primary_black"
-        android:textSize="7sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!-- Logo circle -->
-
-    <ImageView
-        android:id="@+id/loginLogo"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/bg_logo_circle"
-        android:contentDescription="Nordic Paws logo"
-        android:padding="15dp"
-        android:src="@drawable/mealmateavtar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton" />
-
-
-    <!-- Welcome Back -->
-
-    <TextView
-        android:id="@+id/loginTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/plusjakartasbold"
-        android:includeFontPadding="false"
-        android:text="Welcome Back"
-        android:textColor="@color/primary_black"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginLogo" />
-
-
-    <!-- Subtitle -->
-
-    <TextView
-        android:id="@+id/loginSubtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="18dp"
-        android:fontFamily="@font/plus_jakarta_sans_regular"
-        android:gravity="center"
-        android:text="Sign in to keep your pets happy, nourished, and healthy."
-        android:textColor="@color/neutral_slate"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginTitle" />
-
-
-    <!-- Email label -->
-
-    <TextView
-        android:id="@+id/emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/plusjakartasanssemibold"
-        android:text="Email Address"
-        android:textColor="@color/primary_black"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginSubtitle" />
-
-
-    <!-- Email field -->
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailInputLayout"
-        style="@style/Widget.NordicPaws.TextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:hint="hello@petcare.com"
-        app:boxBackgroundColor="@color/surface_white"
-        app:boxCornerRadiusBottomEnd="28dp"
-        app:boxCornerRadiusBottomStart="28dp"
-        app:boxCornerRadiusTopEnd="28dp"
-        app:boxCornerRadiusTopStart="28dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:hintEnabled="false"
-        app:startIconDrawable="@drawable/ic_email"
-        app:startIconTint="@color/neutral_slate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLabel">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/plus_jakarta_sans_regular"
-            android:inputType="textEmailAddress"
-            android:paddingStart="4dp"
-            android:textColor="@color/primary_black"
-            android:textColorHint="#B6B6B6"
-            android:textSize="9sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- Password label -->
-
-    <TextView
-        android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="9dp"
-        android:fontFamily="@font/plusjakartasanssemibold"
-        android:text="Password"
-        android:textColor="@color/primary_black"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailInputLayout" />
-
-
-    <!-- Password field -->
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordInputLayout"
-        style="@style/Widget.NordicPaws.TextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:hint="••••••••••••"
-        app:boxBackgroundColor="@color/surface_white"
-        app:boxCornerRadiusBottomEnd="28dp"
-        app:boxCornerRadiusBottomStart="28dp"
-        app:boxCornerRadiusTopEnd="28dp"
-        app:boxCornerRadiusTopStart="28dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/neutral_slate"
-        app:hintEnabled="false"
-        app:startIconDrawable="@drawable/ic_lock"
-        app:startIconTint="@color/neutral_slate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLabel">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/plusjakartasansegular"
-            android:inputType="textPassword"
-            android:paddingStart="4dp"
-            android:textColor="@color/primary_black"
-            android:textColorHint="#B6B6B6"
-            android:textSize="9sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- Forgot password -->
-
-    <TextView
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:fontFamily="@font/plusjakartasansegular"
-        android:text="Forgot password?"
-        android:textColor="@color/primary_black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="@id/passwordInputLayout"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
-
-
-    <!-- Login button -->
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginButton"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="13dp"
-        android:backgroundTint="@color/primary_black"
-        android:fontFamily="@font/plusjakartasanssemibold"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Log In 🐾"
-        android:textAllCaps="false"
-        android:textColor="@color/surface_white"
-        android:textSize="13sp"
-        app:cornerRadius="25dp"
-        app:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
-
-
-    <!-- OR CONTINUE WITH -->
-
     <LinearLayout
-        android:id="@+id/orContinueContainer"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#E4E4E4" />
+        <!-- ══════════════════════════════════════════════════════════
+             TOP BAR  — back button on left, badge on right
+             ══════════════════════════════════════════════════════════ -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Go back"
+                android:padding="10dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/carePortalBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_care_portal"
+                android:fontFamily="@font/plusjakartasbold"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:text="• CARE PORTAL"
+                android:textColor="@color/primary_black"
+                android:textSize="8sp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <!-- ══════════════════════════════════════════════════════════
+             LOGO
+             ══════════════════════════════════════════════════════════ -->
+
+        <ImageView
+            android:id="@+id/loginLogo"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_logo_circle"
+            android:contentDescription="Nordic Paws logo"
+            android:padding="16dp"
+            android:src="@drawable/mealmateavtar" />
+
+        <!-- ══════════════════════════════════════════════════════════
+             TITLES
+             ══════════════════════════════════════════════════════════ -->
 
         <TextView
+            android:id="@+id/loginTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plusjakartasbold"
+            android:includeFontPadding="false"
+            android:text="Welcome Back"
+            android:textColor="@color/primary_black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/loginSubtitle"
+            android:layout_width="392dp"
+            android:layout_height="47dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:text="Sign in to keep your pets happy, nourished, and \nhealthy."
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- ══════════════════════════════════════════════════════════
+             EMAIL
+             ══════════════════════════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/plusjakartasanssemibold"
-            android:text="OR CONTINUE WITH"
+            android:text="Email Address"
+            android:textColor="@color/primary_black"
+            android:textSize="13sp" />
+
+        <!--
+            height = wrap_content so it adapts to screen density.
+            Corner radius 16dp (safe for any wrap_content height).
+        -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailInputLayout"
+            style="@style/Widget.NordicPaws.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="hello@petcare.com"
+            app:boxBackgroundColor="@color/surface_white"
+            app:boxCornerRadiusTopStart="28dp"
+            app:boxCornerRadiusTopEnd="28dp"
+            app:boxCornerRadiusBottomStart="28dp"
+            app:boxCornerRadiusBottomEnd="28dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_email_circle"
+            app:startIconTint="@null">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:inputType="textEmailAddress"
+                android:minHeight="54dp"
+                android:paddingStart="4dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="#B6B6B6"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ══════════════════════════════════════════════════════════
+             PASSWORD
+             ══════════════════════════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            android:text="Password"
+            android:textColor="@color/primary_black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordInputLayout"
+            style="@style/Widget.NordicPaws.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="••••••••••••"
+            app:boxBackgroundColor="@color/surface_white"
+            app:boxCornerRadiusTopStart="28dp"
+            app:boxCornerRadiusTopEnd="28dp"
+            app:boxCornerRadiusBottomStart="28dp"
+            app:boxCornerRadiusBottomEnd="28dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/neutral_slate"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_lock_circle"
+            app:startIconTint="@null">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/plusjakartasansegular"
+                android:inputType="textPassword"
+                android:minHeight="54dp"
+                android:paddingStart="4dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="#B6B6B6"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ══════════════════════════════════════════════════════════
+             FORGOT PASSWORD
+             ══════════════════════════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            android:text="Forgot password?"
+            android:textColor="@color/primary_black"
+            android:textSize="12sp" />
+
+        <!-- ══════════════════════════════════════════════════════════
+             LOGIN BUTTON
+             minHeight=58dp + wrap_content = large on all screen sizes
+             ══════════════════════════════════════════════════════════ -->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:backgroundTint="@color/primary_black"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minHeight="58dp"
+            android:text="Log In 🐾"
+            android:textAllCaps="false"
+            android:textColor="@color/surface_white"
+            android:textSize="16sp"
+            android:letterSpacing="0.01"
+            app:cornerRadius="29dp"
+            app:elevation="0dp" />
+
+        <!-- ══════════════════════════════════════════════════════════
+             OR CONTINUE WITH
+             ══════════════════════════════════════════════════════════ -->
+
+        <LinearLayout
+            android:id="@+id/orContinueContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#E4E4E4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:letterSpacing="0.08"
+                android:text="OR CONTINUE WITH"
+                android:textColor="@color/neutral_slate"
+                android:textSize="9sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#E4E4E4" />
+
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════════════════════════
+             SOCIAL BUTTONS
+             minHeight=54dp + wrap_content = responsive on all densities
+             ══════════════════════════════════════════════════════════ -->
+
+        <LinearLayout
+            android:id="@+id/socialButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/googleButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                app:backgroundTint="@color/surface_white"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:minHeight="54dp"
+                android:text="Google"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_black"
+                android:textSize="13sp"
+                app:cornerRadius="27dp"
+                app:icon="@drawable/ic_setting"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@null"
+                app:strokeColor="#E7E7E7"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/appleButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                app:backgroundTint="@color/surface_white"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:minHeight="54dp"
+                android:text="Apple"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_black"
+                android:textSize="13sp"
+                app:cornerRadius="27dp"
+                app:icon="@drawable/ic_lock"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@null"
+                app:strokeColor="#E7E7E7"
+                app:strokeWidth="1dp" />
+
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════════════════════════
+             SIGN UP CTA
+             ══════════════════════════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/signupText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Don't have an account?  Sign Up"
             android:textColor="@color/neutral_slate"
-            android:textSize="6sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#E4E4E4" />
+            android:textSize="13sp" />
 
     </LinearLayout>
 
-
-    <!-- Social buttons -->
-
-    <LinearLayout
-        android:id="@+id/socialButtons"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="7dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/orContinueContainer">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/googleButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/surface_white"
-            android:fontFamily="@font/plus_jakarta_sans_bold_italic"
-            android:text="Google"
-            android:textAllCaps="false"
-            android:textColor="@color/primary_black"
-            android:textSize="8sp"
-            app:cornerRadius="24dp"
-            app:icon="@drawable/ic_google"
-            app:iconGravity="textStart"
-            app:iconSize="15dp"
-            app:iconTint="@null"
-            app:strokeColor="#E7E7E7"
-            app:strokeWidth="1dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/appleButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/surface_white"
-            android:fontFamily="@font/plusjakartasanssemibold"
-            android:text="Apple"
-            android:textAllCaps="false"
-            android:textColor="@color/primary_black"
-            android:textSize="8sp"
-            app:cornerRadius="24dp"
-            app:icon="@drawable/ic_apple"
-            app:iconGravity="textStart"
-            app:iconSize="14dp"
-            app:iconTint="@null"
-            app:strokeColor="#E7E7E7"
-            app:strokeWidth="1dp" />
-
-    </LinearLayout>
-
-
-    <!-- Signup -->
-
-    <TextView
-        android:id="@+id/signupText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/plusjakartasansbold"
-        android:text="Don't have an account?  Sign Up"
-        android:textColor="@color/neutral_slate"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
