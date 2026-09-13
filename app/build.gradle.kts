@@ -4,14 +4,12 @@ plugins {
 
 android {
     namespace = "com.sangampradhan.nordicpaws"
-    compileSdk {
-        version = release(37)
-    }
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sangampradhan.nordicpaws"
-        minSdk = 35
-        targetSdk = 37
+        minSdk = 26
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
