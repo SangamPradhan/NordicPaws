@@ -1,0 +1,35 @@
+<resources>
+
+    <style
+        name="Widget.NordicPaws.TextInputLayout"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <item name="boxBackgroundColor">@color/surface_white</item>
+
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">#E2E8F0</item>
+
+        <item name="boxCornerRadiusTopStart">28dp</item>
+        <item name="boxCornerRadiusTopEnd">28dp</item>
+        <item name="boxCornerRadiusBottomStart">28dp</item>
+        <item name="boxCornerRadiusBottomEnd">28dp</item>
+
+        <item name="hintEnabled">false</item>
+
+        <!-- Important: the drawable already contains its own circle -->
+        <item name="startIconTint">@null</item>
+
+    </style>
+
+    <!--
+        Login screen gets its own theme so the window background matches
+        the layout background (bg_cream).  Without this, Android briefly
+        shows the app-wide windowBackground (secondary_yellow) before
+        setContentView() finishes drawing, producing a yellow → black flash.
+    -->
+    <style name="Theme.NordicPaws.Login" parent="Theme.NordicPaws">
+        <item name="android:windowBackground">@color/bg_cream</item>
+    </style>
+
+</resources>
