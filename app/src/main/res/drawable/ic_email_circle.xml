@@ -8,7 +8,7 @@
         android:height="42dp">
 
         <shape android:shape="oval">
-            <solid android:color="#EFF4FF" />
+            <solid android:color="#DBEAFE" />
         </shape>
 
     </item>
@@ -20,12 +20,8 @@
         android:left="10dp"
         android:top="10dp"
         android:right="10dp"
-        android:bottom="10dp">
-
-        <bitmap
-            android:src="@drawable/ic_email"
-            android:gravity="center" />
-
-    </item>
+        android:bottom="10dp"
+        android:background="@color/primary_black"
+        android:drawable="@drawable/ic_email" />
 
 </layer-list>
