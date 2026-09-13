@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_edit_task"
+        android:icon="@drawable/ic_edit"
+        android:title="Edit Task" />
+    <item
+        android:id="@+id/action_remove_today"
+        android:icon="@drawable/exit"
+        android:title="Remove for Today" />
+</menu>
