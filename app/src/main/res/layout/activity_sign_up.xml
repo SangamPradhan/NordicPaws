@@ -96,10 +96,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Full Name"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.NordicPaws.TextInputLayout"
@@ -121,7 +122,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plus_jakarta_sans_regular"
                 android:inputType="textPersonName"
                 android:minHeight="54dp"
@@ -136,10 +137,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Email Address"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.NordicPaws.TextInputLayout"
@@ -161,7 +163,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plus_jakarta_sans_regular"
                 android:inputType="textEmailAddress"
                 android:minHeight="54dp"
@@ -176,10 +178,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Password"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.NordicPaws.TextInputLayout"
@@ -203,7 +206,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plusjakartasansegular"
                 android:inputType="textPassword"
                 android:minHeight="54dp"
@@ -218,10 +221,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Confirm Password"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.NordicPaws.TextInputLayout"
@@ -245,7 +249,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plusjakartasansegular"
                 android:inputType="textPassword"
                 android:minHeight="54dp"

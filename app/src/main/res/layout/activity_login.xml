@@ -74,7 +74,7 @@
             android:background="@drawable/bg_logo_circle"
             android:contentDescription="Nordic Paws logo"
             android:padding="16dp"
-            android:src="@drawable/mealmateavtar" />
+            android:src="@drawable/petcare_logo" />
 
         <!-- ══════════════════════════════════════════════════════════
              TITLES
@@ -111,28 +111,31 @@
              EMAIL
              ══════════════════════════════════════════════════════════ -->
 
+        <!--
+            height = wrap_content so it adapts to screen density.
+            Corner radius 16dp (safe for any wrap_content height).
+        -->
         <TextView
             android:id="@+id/emailLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Email Address"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
-        <!--
-            height = wrap_content so it adapts to screen density.
-            Corner radius 16dp (safe for any wrap_content height).
-        -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailInputLayout"
             style="@style/Widget.NordicPaws.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginTop="8dp"
             android:hint="hello@petcare.com"
-            app:boxBackgroundColor="@color/surface_white"
+            app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusTopStart="28dp"
             app:boxCornerRadiusTopEnd="28dp"
             app:boxCornerRadiusBottomStart="28dp"
@@ -147,7 +150,7 @@
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plus_jakarta_sans_regular"
                 android:inputType="textEmailAddress"
                 android:minHeight="54dp"
@@ -167,10 +170,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="6dp"
             android:fontFamily="@font/plusjakartasanssemibold"
             android:text="Password"
             android:textColor="@color/primary_black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordInputLayout"
@@ -196,11 +200,12 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/bg_rounded_input"
                 android:fontFamily="@font/plusjakartasansegular"
                 android:inputType="textPassword"
                 android:minHeight="54dp"
-                android:paddingStart="4dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:textColor="@color/primary_black"
                 android:textColorHint="#B6B6B6"
                 android:textSize="14sp" />
