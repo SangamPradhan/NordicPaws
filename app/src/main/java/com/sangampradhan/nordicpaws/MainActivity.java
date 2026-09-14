@@ -1,5 +1,6 @@
 package com.sangampradhan.nordicpaws;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
         navPlaces.setOnClickListener(v -> selectTab(1));
         navRoutine.setOnClickListener(v -> selectTab(2));
         navProfile.setOnClickListener(v -> selectTab(3));
+
+
+
+        // Tapping the top-bar profile avatar opens AccountDetailsActivity
+        if (profileImage != null) {
+            profileImage.setOnClickListener(v -> {
+                Intent accountIntent = new Intent(this, AccountDetailsActivity.class);
+                startActivity(accountIntent);
+                overridePendingTransition(R.anim.slide_up, 0);
+            });
+        }
 
         navPaw.setOnClickListener(v -> {
             setTopBarTitle("Pet Profile");

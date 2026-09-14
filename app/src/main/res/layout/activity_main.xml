@@ -43,12 +43,40 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <!-- Right Side: Text & Profile -->
+        <!-- Right Side: Notification Icon, Section Title & Profile -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <!-- Floating Notification Bell Action Button -->
+<!--            <FrameLayout-->
+<!--                android:id="@+id/btnNotificationBell"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginEnd="12dp"-->
+<!--                android:background="@drawable/bg_bottom_nav"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/ic_notifications"-->
+<!--                    app:tint="@color/primary_black" />-->
+
+<!--                &lt;!&ndash; Red Badge Dot &ndash;&gt;-->
+<!--                <View-->
+<!--                    android:layout_width="8dp"-->
+<!--                    android:layout_height="8dp"-->
+<!--                    android:layout_gravity="top|end"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:background="@drawable/bg_logo_circle"-->
+<!--                    android:backgroundTint="#BA1A1A" />-->
+<!--            </FrameLayout>-->
 
             <TextView
                 android:id="@+id/topBarTitleText"
@@ -162,7 +190,7 @@
                     android:textSize="10sp" />
             </LinearLayout>
 
-            <!-- Center Paw Button (inline, not floating) -->
+            <!-- Center Paw Button -->
             <FrameLayout
                 android:id="@+id/navPaw"
                 android:layout_width="48dp"
