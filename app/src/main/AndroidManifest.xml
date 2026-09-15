@@ -43,6 +43,21 @@
             android:name=".MainActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".AccountDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NordicPaws" />
+
+        <activity
+            android:name=".NotificationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NordicPaws" />
+
+        <activity
+            android:name=".AddEditPetActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NordicPaws" />
+
     </application>
 
 </manifest>
