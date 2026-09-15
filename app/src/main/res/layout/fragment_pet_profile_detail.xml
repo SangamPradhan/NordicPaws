@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream"
+    android:fillViewport="true"
+    tools:context=".PetProfileDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="24dp"
+        android:paddingBottom="100dp"
+        android:paddingHorizontal="24dp">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_bottom_nav"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:padding="8dp"
+                app:tint="@color/primary_black"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_bottom_nav"
+                android:src="@drawable/baseline_favorite_border_24"
+                android:padding="8dp"
+                app:tint="@color/primary_black"/>
+        </LinearLayout>
+
+        <!-- Hero Image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="24dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dog"
+                    android:scaleType="centerCrop"/>
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_bottom_nav"
+                    android:backgroundTint="#E6FFFFFF"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:gravity="center_vertical">
+                    
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:background="@drawable/bg_fab_outline"
+                        android:backgroundTint="@color/secondary_yellow"
+                        android:layout_marginEnd="6dp"/>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WELLNESS VERIFIED"
+                        android:textColor="@color/primary_black"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/plusjakartasansbold"/>
+                </LinearLayout>
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Pet Identity -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Milo"
+                android:textColor="@color/primary_black"
+                android:textSize="26sp"
+                android:fontFamily="@font/plusjakartasansbold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#D5E3FC"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:gravity="center_vertical">
+                
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/paw"
+                    app:tint="#6E5E0D"
+                    android:layout_marginEnd="6dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Healthy &amp; Active"
+                    android:textColor="@color/primary_black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Three info boxes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <!-- Breed -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#FFDDB7"
+                android:padding="12dp"
+                android:layout_marginEnd="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BREED"
+                    android:textColor="#2A1800"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Golden Ret."
+                    android:textColor="#2A1800"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+
+            <!-- Age -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#F9E287"
+                android:padding="12dp"
+                android:layout_marginHorizontal="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AGE"
+                    android:textColor="#534600"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2y 4m"
+                    android:textColor="#534600"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+
+            <!-- Weight -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#DCE9FF"
+                android:padding="12dp"
+                android:layout_marginStart="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WEIGHT"
+                    android:textColor="@color/primary_black"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28.5 kg"
+                    android:textColor="@color/primary_black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- About & Medical Notes -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/baseline_event_note_24"
+                        app:tint="#6E5E0D"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About &amp; Medical Notes"
+                        android:textColor="@color/primary_black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Friendly, high-energy companion. Loves outdoor fetch and hydrotherapy. Mild grain allergy; responds best to salmon and sweet potato diet. All seasonal booster shots recorded."
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Next Booster & Dietary Plan -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        
+                        <FrameLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#E6EEFF">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_health_and_safety_24"
+                                app:tint="#6E5E0D"/>
+                        </FrameLayout>
+                        
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Next Booster"
+                                android:textColor="@color/primary_black"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plusjakartasanssemibold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nov 14, 2025"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#E6EEFF">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_restaurant_24"
+                                app:tint="#6E5E0D"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dietary Plan"
+                                android:textColor="@color/primary_black"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plusjakartasanssemibold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Grain-Free Pro"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Photo Memories -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo Memories"
+                android:textColor="@color/primary_black"
+                android:textSize="18sp"
+                android:fontFamily="@font/plusjakartasanssemibold"/>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="4"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#E6EEFF"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:textColor="@color/neutral_slate"
+                android:textSize="10sp"
+                android:fontFamily="@font/plusjakartasansbold"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_add"
+                app:tint="@color/primary_black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Add"
+                android:textColor="@color/primary_black"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"/>
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Photo 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="144dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/dog"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="8dp"
+                            android:text="PARK DAY"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#CCFFFFFF"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/primary_black"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/plusjakartasansbold"/>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Photo 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="144dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/dog"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="8dp"
+                            android:text="SWIMMING"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#CCFFFFFF"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/primary_black"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/plusjakartasansbold"/>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Photo 3 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="144dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/dog"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="8dp"
+                            android:text="RESTING"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#CCFFFFFF"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/primary_black"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/plusjakartasansbold"/>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- CTA Button -->
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="54dp"
+            android:text="View Care Routine"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            app:backgroundTint="@color/primary_black"
+            app:cornerRadius="27dp"
+            app:icon="@drawable/baseline_arrow_forward_24"
+            app:iconGravity="textEnd"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
