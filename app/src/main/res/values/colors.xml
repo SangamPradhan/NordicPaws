@@ -13,4 +13,5 @@
     <color name="surface_white">#FFFFFF</color>
     <color name="background_cream">#FFF8EC</color>
     <color name="bg_cream">#F8F9FF</color>
+    <color name="light_blue">#dce9ff</color>
 </resources>
