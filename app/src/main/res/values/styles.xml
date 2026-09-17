@@ -32,4 +32,30 @@
         <item name="android:windowBackground">@color/bg_cream</item>
     </style>
 
+    <!-- Account Details: slides up from bottom like a bottom sheet -->
+    <style name="Theme.NordicPaws.BottomSheet" parent="Theme.NordicPaws">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.NordicPaws.BottomSheet</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Animation.NordicPaws.BottomSheet" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <!-- Notifications: slides down from top -->
+    <style name="Theme.NordicPaws.TopSheet" parent="Theme.NordicPaws">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.NordicPaws.TopSheet</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Animation.NordicPaws.TopSheet" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_down_enter</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_exit</item>
+    </style>
+
 </resources>
