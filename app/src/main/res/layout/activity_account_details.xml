@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_cream">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/bg_cream"
+        android:elevation="4dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_white">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:tint="@color/primary_black"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Account Details"
+            android:textColor="@color/primary_black"
+            android:textSize="18sp"
+            android:fontFamily="@font/plusjakartasanssemibold"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnCloseAccount"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_white">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_close"
+                app:tint="@color/primary_black"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="40dp">
+
+            <!-- Avatar & Identity Summary -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp">
+
+                <!-- Avatar with camera badge -->
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginBottom="12dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="48dp"
+                        app:cardElevation="4dp">
+                        <ImageView
+                            android:id="@+id/accountAvatarImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/person"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Camera badge -->
+                    <FrameLayout
+                        android:id="@+id/btnAccountChangeAvatar"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="bottom|end"
+                        android:background="@drawable/bg_welcome_button"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/surface_white"/>
+                    </FrameLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/accountUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alex Morgan"
+                    android:textColor="@color/primary_black"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+
+                <!-- Role badge pill -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_bottom_nav"
+                    android:backgroundTint="#F6DF84"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:layout_marginTop="8dp">
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:background="@drawable/badge_dot"
+                        android:backgroundTint="#6E5E0D"
+                        android:layout_marginEnd="6dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PRIMARY CAREGIVER • WELLNESS COLLECTIVE"
+                        android:textColor="#534600"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/plusjakartasansbold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Personal Information Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PERSONAL INFORMATION"
+                android:textColor="@color/neutral_slate"
+                android:textSize="10sp"
+                android:fontFamily="@font/plusjakartasansbold"
+                android:paddingHorizontal="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Full Name -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Legal Name"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/baseline_person_24"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etFullName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:text="Alex Morgan"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="textPersonName"/>
+                    </LinearLayout>
+
+                    <!-- Email -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Primary Email"
+                            android:textColor="@color/neutral_slate"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/plusjakartasanssemibold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Verified"
+                            android:textColor="@color/primary_black"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/plusjakartasansbold"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#DCE9FF"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_email"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:text="alex.morgan@petcare.com"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="textEmailAddress"/>
+                    </LinearLayout>
+
+                    <!-- Phone -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile Number"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_phone"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:text="+1 (555) 234-5678"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="phone"/>
+                    </LinearLayout>
+
+                    <!-- Location -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Primary Residence / Postal"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:text="San Francisco, CA (94110)"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="text"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Security & Authentication Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SECURITY &amp; AUTHENTICATION"
+                android:textColor="@color/neutral_slate"
+                android:textSize="10sp"
+                android:fontFamily="@font/plusjakartasansbold"
+                android:paddingHorizontal="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Update Password Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Update Password"
+                            android:textColor="@color/primary_black"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/plusjakartasanssemibold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last updated 42d ago"
+                            android:textColor="@color/neutral_slate"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                    </LinearLayout>
+
+                    <!-- Current Password -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current Password"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="12dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etCurrentPassword"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:text="············"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="textPassword"/>
+                        <ImageView
+                            android:id="@+id/btnToggleCurrentPwd"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_visibility"
+                            app:tint="@color/neutral_slate"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+
+                    <!-- New Password -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Secure Password"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="12dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etNewPassword"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="Enter at least 8 characters"
+                            android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="textPassword"/>
+                        <ImageView
+                            android:id="@+id/btnToggleNewPwd"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_visibility"
+                            app:tint="@color/neutral_slate"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+
+                    <!-- Update Password Button -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_marginBottom="16dp">
+                        <TextView
+                            android:id="@+id/btnUpdatePassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#DCE9FF"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="20dp"
+                            android:text="Update Password"
+                            android:textColor="@color/primary_black"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/plusjakartasanssemibold"/>
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#F0EEF0"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- 2FA Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:padding="12dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#EFF4FF"
+                            android:layout_marginEnd="12dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_health_and_safety_24"
+                                app:tint="@color/primary_black"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Two-Factor Authentication"
+                                android:textColor="@color/primary_black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/plusjakartasanssemibold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Enabled via SMS (+1 ••• 5678)"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switch2FA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Account & Preferences Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCOUNT &amp; PREFERENCES"
+                android:textColor="@color/neutral_slate"
+                android:textSize="10sp"
+                android:fontFamily="@font/plusjakartasansbold"
+                android:paddingHorizontal="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Personal Details row -->
+                    <LinearLayout
+                        android:id="@+id/accountRowDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#E2E8F0"
+                            android:layout_marginEnd="12dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_person_24"
+                                app:tint="@color/primary_black"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Personal Details"
+                                android:textColor="@color/primary_black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/plusjakartasansbold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Name, phone &amp; security info"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/neutral_slate"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="16dp" android:background="#F0EEF0"/>
+
+                    <!-- Notification Preferences row -->
+                    <LinearLayout
+                        android:id="@+id/accountRowNotifPrefs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#FFF6DC"
+                            android:layout_marginEnd="12dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_notifications"
+                                app:tint="#6E5E0D"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Notification Preferences"
+                                android:textColor="@color/primary_black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/plusjakartasansbold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Meal reminders &amp; health alerts"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/neutral_slate"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="16dp" android:background="#F0EEF0"/>
+
+                    <!-- Manage Pets row -->
+                    <LinearLayout
+                        android:id="@+id/accountRowManagePets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#FFF0E8"
+                            android:layout_marginEnd="12dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/paw"
+                                app:tint="#7D5038"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Manage Pets"
+                                android:textColor="@color/primary_black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/plusjakartasansbold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Milo, Luna &amp; others"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#E2E8F0"
+                            android:fontFamily="@font/plusjakartasansbold"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="3 registered"
+                            android:textColor="@color/primary_black"
+                            android:textSize="11sp"/>
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/neutral_slate"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Save Changes Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveChanges"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Save Changes"
+                android:textColor="@color/surface_white"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:backgroundTint="@color/primary_black"
+                app:cornerRadius="26dp"
+                app:icon="@drawable/baseline_check_circle_24"
+                app:iconGravity="textStart"
+                app:iconTint="@color/surface_white"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Updates sync immediately across all connected caregiver accounts"
+                android:textColor="@color/neutral_slate"
+                android:textSize="12sp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Danger Zone: Account Management -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCOUNT MANAGEMENT"
+                android:textColor="#BA1A1A"
+                android:textSize="10sp"
+                android:fontFamily="@font/plusjakartasansbold"
+                android:paddingHorizontal="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#33FFDAD6"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <FrameLayout
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_logo_circle"
+                            android:backgroundTint="#FFDAD6"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginTop="2dp">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_health_and_safety_24"
+                                app:tint="#BA1A1A"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Delete Account"
+                                android:textColor="#BA1A1A"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/plusjakartasanssemibold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Permanently delete your account, pet dietary preferences, vaccination logs, and revoke shared family care routines. This action cannot be undone."
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end">
+                        <TextView
+                            android:id="@+id/btnDeleteAccount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_bottom_nav"
+                            android:backgroundTint="#BA1A1A"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="16dp"
+                            android:text="Delete Account..."
+                            android:textColor="@color/surface_white"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/plusjakartasanssemibold"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Log Out Button -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/accountBtnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <FrameLayout
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_logo_circle"
+                        android:backgroundTint="#FFDAD6">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_logout"
+                            app:tint="#BA1A1A"/>
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Log Out"
+                        android:textColor="#BA1A1A"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/plusjakartasansbold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Security footnote -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/neutral_slate"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Bank-level 256-bit encryption • NordicPaws Privacy Standards"
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"/>
+            </LinearLayout>
+
+            <!-- Version label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="NordicPaws v1.0.0 — Nordic Edition"
+                android:textColor="@color/neutral_slate"
+                android:textSize="11sp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
