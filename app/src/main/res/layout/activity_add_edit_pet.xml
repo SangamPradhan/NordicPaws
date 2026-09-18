@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/surface_white">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/surface_white"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/primary_black"/>
+
+        <TextView
+            android:id="@+id/tvScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="New Activity"
+            android:textColor="@color/primary_black"
+            android:textSize="18sp"
+            android:fontFamily="@font/plusjakartasanssemibold"/>
+            
+        <androidx.cardview.widget.CardView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_person_24"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Header info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/badge_dot"
+                    android:backgroundTint="@color/secondary_yellow"
+                    android:layout_marginEnd="8dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PROFILE SETUP"
+                    android:textSize="10sp"
+                    android:textColor="@color/neutral_slate"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Sanctuary Profile"
+                android:textColor="@color/primary_black"
+                android:textSize="22sp"
+                android:fontFamily="@font/plusjakartasansbold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Holistic wellness tracking starts with mindful details."
+                android:textColor="@color/neutral_slate"
+                android:textSize="14sp"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Photo Upload -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp">
+                
+                <FrameLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp">
+                    
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="60dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#F6DF84"> <!-- secondary_container with low opacity -->
+                        
+                        <!-- Inner content -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="#33F6DF84"> <!-- 20% opacity -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                app:cardCornerRadius="20dp"
+                                app:cardElevation="2dp"
+                                app:cardBackgroundColor="@color/surface_white"
+                                android:layout_marginBottom="8dp">
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_add"
+                                    app:tint="@color/primary_black"/>
+                            </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="UPLOAD PHOTO"
+                                android:textColor="@color/primary_black"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/plusjakartasansbold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="High-res portrait"
+                                android:textColor="@color/neutral_slate"
+                                android:textSize="9sp"
+                                android:fontFamily="@font/plus_jakarta_sans_regular"/>
+                        </LinearLayout>
+                        
+                        <!-- Actual image (hidden initially) -->
+                        <ImageView
+                            android:id="@+id/ivPetPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"/>
+                    </androidx.cardview.widget.CardView>
+                    
+                    <!-- Sparkle Badge -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/primary_black">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/paw"
+                            app:tint="@color/surface_white"/>
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Tap to personalize Milo's space"
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+            </LinearLayout>
+
+            <!-- Form -->
+            
+            <!-- Pet Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pet Name *"
+                android:textColor="@color/primary_black"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="6dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#EFF4FF"
+                    android:layout_marginEnd="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_favorite_24"
+                        app:tint="@color/neutral_slate"/>
+                </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/etPetName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="e.g. Milo"
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="textPersonName"/>
+            </LinearLayout>
+
+            <!-- Breed / Species -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breed / Species *"
+                android:textColor="@color/primary_black"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="6dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#EFF4FF"
+                    android:layout_marginEnd="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/paw"
+                        app:tint="@color/neutral_slate"/>
+                </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/etPetBreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="e.g. Golden Retriever"
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="text"/>
+            </LinearLayout>
+
+            <!-- Age & Weight -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- Age -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Age"
+                        android:textColor="@color/primary_black"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="12dp">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#EFF4FF"
+                            android:layout_marginEnd="8dp">
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_event_note"
+                                app:tint="@color/neutral_slate"/>
+                        </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/etPetAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="e.g. 2 yrs"
+                            android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="text"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Weight -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weight"
+                        android:textColor="@color/primary_black"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="12dp">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#EFF4FF"
+                            android:layout_marginEnd="8dp">
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_monitor_weight_24"
+                                app:tint="@color/neutral_slate"/>
+                        </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/etPetWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="e.g. 28 kg"
+                            android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="text"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Dietary Regimen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dietary Regimen"
+                    android:textColor="@color/primary_black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NUTRITIONAL CARE"
+                    android:textColor="@color/secondary_yellow"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#EFF4FF"
+                    android:layout_marginEnd="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_restaurant_24"
+                        app:tint="@color/neutral_slate"/>
+                </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/etPetDiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="e.g. Grain-free kibble, boiled salmon"
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="text"/>
+            </LinearLayout>
+
+            <!-- Known Allergies -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Known Allergies"
+                    android:textColor="@color/primary_black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanssemibold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SAFETY ALERT"
+                    android:textColor="#BA1A1A"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#66FFDAD6"
+                    android:layout_marginEnd="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_health_and_safety_24"
+                        app:tint="#BA1A1A"/>
+                </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/etPetAllergies"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="e.g. Chicken, dairy, synthetic dyes"
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="text"/>
+            </LinearLayout>
+
+            <!-- Special Care Notes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Special Care &amp; Behavioral Notes"
+                android:textColor="@color/primary_black"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="6dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/paw"
+                        app:tint="@color/neutral_slate"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EMOTIONAL &amp; HABITUAL WELL-BEING"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/plusjakartasansbold"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+                
+                <EditText
+                    android:id="@+id/etPetNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="3"
+                    android:gravity="top|start"
+                    android:background="@null"
+                    android:hint="e.g. Fear of thunder; enjoys slow morning brushings. Loves lavender paw balms after walks."
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+
+            <!-- Save Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSavePet"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:text="Save Pet Profile"
+                android:textColor="@color/surface_white"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:backgroundTint="@color/primary_black"
+                app:cornerRadius="27dp"
+                app:icon="@drawable/baseline_check_circle_24"
+                app:iconGravity="textStart"
+                app:iconTint="@color/surface_white"
+                android:layout_marginBottom="8dp"/>
+                
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/neutral_slate"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Encrypted pet health record • Accessible anywhere"
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:layout_marginStart="6dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
