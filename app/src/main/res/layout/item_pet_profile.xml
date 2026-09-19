@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardPet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/surface_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Image -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+                <ImageView
+                    android:id="@+id/ivPetImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dog"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Details -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <TextView
+                        android:id="@+id/tvPetName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Milo"
+                        android:textColor="@color/primary_black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"/>
+
+                    <ImageView
+                        android:id="@+id/btnMoreOptions"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/baseline_more_vert_24"
+                        app:tint="@color/neutral_slate"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPetBreed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Golden Retriever • Male"
+                    android:textColor="@color/neutral_slate"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"/>
+
+                <TextView
+                    android:id="@+id/tvStatusBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Up to date on vaccines"
+                    android:background="@drawable/bg_bottom_nav"
+                    android:backgroundTint="#EFF4FF"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/primary_black"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/plusjakartasansbold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Tags -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+            
+            <TextView
+                android:id="@+id/tvTagType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dog"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="@color/secondary_yellow"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                android:textColor="#534600"
+                android:textSize="12sp"
+                android:fontFamily="@font/plusjakartasanssemibold"/>
+
+            <TextView
+                android:id="@+id/tvTagAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="2 yrs 4 mos"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#DCE9FF"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                android:textColor="@color/primary_black"
+                android:textSize="12sp"
+                android:fontFamily="@font/plusjakartasanssemibold"/>
+
+            <TextView
+                android:id="@+id/tvTagOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Microchipped"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#D5E3FC"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                android:textColor="@color/primary_black"
+                android:textSize="12sp"
+                android:fontFamily="@font/plusjakartasanssemibold"/>
+        </LinearLayout>
+
+        <!-- Stats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <!-- Stat 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#EFF4FF"
+                android:padding="8dp"
+                android:layout_marginEnd="4dp">
+                
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_monitor_weight_24"
+                    app:tint="@color/neutral_slate"/>
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WEIGHT"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="9sp"
+                        android:fontFamily="@font/plusjakartasansbold"/>
+                    <TextView
+                        android:id="@+id/tvStat1Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="31.4 kg"
+                        android:textColor="@color/primary_black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Stat 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_bottom_nav"
+                android:backgroundTint="#EFF4FF"
+                android:padding="8dp"
+                android:layout_marginStart="4dp">
+
+                <ImageView
+                    android:id="@+id/ivStat2Icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_health_and_safety_24"
+                    app:tint="@color/neutral_slate"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+                    <TextView
+                        android:id="@+id/tvStat2Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WELLNESS SCORE"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="9sp"
+                        android:fontFamily="@font/plusjakartasansbold"/>
+                    <TextView
+                        android:id="@+id/tvStat2Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="98% Optimal"
+                        android:textColor="@color/primary_black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
