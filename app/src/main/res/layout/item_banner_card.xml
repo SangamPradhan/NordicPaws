@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Label pill (e.g. "✨ DAILY CHECK-IN") -->
+    <TextView
+        android:id="@+id/bannerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_welcome_button"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/plusjakartasansbold"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:text="✨ DAILY CHECK-IN"
+        android:textColor="@color/primary_black"
+        android:textSize="10sp" />
+
+    <!-- Headline -->
+    <TextView
+        android:id="@+id/bannerHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/plusjakartasansbold"
+        android:text="How is your day with your pets?"
+        android:textColor="@color/primary_black"
+        android:textSize="18sp" />
+
+    <!-- Body -->
+    <TextView
+        android:id="@+id/bannerBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:text="Log activities, quick vitals, or mood in one tap."
+        android:textColor="@color/neutral_slate"
+        android:textSize="13sp" />
+
+    <!-- Action button / tag row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/bannerAction1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_nav"
+            android:fontFamily="@font/plusjakartasansbold"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="🐾 Joyful &amp; Active"
+            android:textColor="@color/primary_black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/bannerAction2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_bottom_nav"
+            android:backgroundTint="#80FFFFFF"
+            android:fontFamily="@font/plusjakartasansbold"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="💤 Resting"
+            android:textColor="@color/primary_black"
+            android:textSize="13sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

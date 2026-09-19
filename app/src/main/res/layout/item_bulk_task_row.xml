@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_rounded_input"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Row 1: Category Dropdown Spinner & Remove Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <Spinner
+            android:id="@+id/spinnerTaskCategory"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_input"
+            android:backgroundTint="#F8F9FF"
+            android:paddingHorizontal="8dp" />
+
+        <ImageButton
+            android:id="@+id/btnRemoveBulkTask"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/exit"
+            app:tint="#BA1A1A" />
+    </LinearLayout>
+
+    <!-- Row 2: Title Input -->
+    <EditText
+        android:id="@+id/etBulkTaskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_rounded_input"
+        android:backgroundTint="#F8F9FF"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:hint="Task title (e.g. Kibble &amp; Probiotic, Vet Visit)"
+        android:inputType="textCapWords"
+        android:paddingHorizontal="12dp"
+        android:textColor="@color/primary_black"
+        android:textColorHint="@color/neutral_slate"
+        android:textSize="13sp" />
+
+    <!-- Row 3: Time Picker & Notes Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/bulkTimePickerPill"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_rounded_input"
+            android:backgroundTint="#F8F9FF"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/baseline_event_note_24"
+                app:tint="@color/neutral_slate" />
+
+            <TextView
+                android:id="@+id/tvBulkScheduledTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/plusjakartasansbold"
+                android:text="08:00 AM"
+                android:textColor="@color/primary_black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etBulkTaskNotes"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_rounded_input"
+            android:backgroundTint="#F8F9FF"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:hint="Notes / portion..."
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/primary_black"
+            android:textColorHint="@color/neutral_slate"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
