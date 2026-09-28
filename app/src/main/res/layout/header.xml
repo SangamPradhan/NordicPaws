@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/mealmatelogo" />
+        android:src="@drawable/petcare_logo" />
 
     <TextView
         android:id="@+id/app_name"
