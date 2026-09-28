@@ -21,6 +21,7 @@ import com.sangampradhan.nordicpaws.fragments.PetProfileListFragment;
 import com.sangampradhan.nordicpaws.fragments.PlacesFragment;
 import com.sangampradhan.nordicpaws.fragments.ProfileFragment;
 import com.sangampradhan.nordicpaws.fragments.RoutineFragment;
+import com.sangampradhan.nordicpaws.fragments.AccountDetailsBottomSheetFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,12 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // Tapping the top-bar profile avatar opens AccountDetailsActivity
+        // Tapping the top-bar profile avatar opens AccountDetailsBottomSheetFragment
         if (profileImage != null) {
             profileImage.setOnClickListener(v -> {
-                Intent accountIntent = new Intent(this, AccountDetailsActivity.class);
-                startActivity(accountIntent);
-                overridePendingTransition(R.anim.slide_up, 0);
+                AccountDetailsBottomSheetFragment sheet = AccountDetailsBottomSheetFragment.newInstance();
+                sheet.show(getSupportFragmentManager(), "AccountDetailsSheet");
             });
         }
 
