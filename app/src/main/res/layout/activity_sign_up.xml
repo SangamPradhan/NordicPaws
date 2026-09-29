@@ -103,6 +103,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fullNameInputLayout"
             style="@style/Widget.NordicPaws.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,6 +121,7 @@
             app:startIconTint="@null">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_rounded_input"
@@ -144,6 +146,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailInputLayout"
             style="@style/Widget.NordicPaws.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -161,6 +164,7 @@
             app:startIconTint="@null">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_rounded_input"
@@ -185,6 +189,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordInputLayout"
             style="@style/Widget.NordicPaws.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -204,6 +209,7 @@
             app:startIconTint="@null">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_rounded_input"
@@ -228,6 +234,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmPasswordInputLayout"
             style="@style/Widget.NordicPaws.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -247,6 +254,7 @@
             app:startIconTint="@null">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_rounded_input"
@@ -267,6 +275,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
             <CheckBox
+                android:id="@+id/termsCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/primary_black" />
