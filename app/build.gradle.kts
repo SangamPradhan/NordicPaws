@@ -35,6 +35,7 @@ dependencies {
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.database)
     implementation(libs.fragment)
     implementation(libs.material)
     implementation(libs.recyclerview)
