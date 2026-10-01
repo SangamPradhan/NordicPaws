@@ -120,6 +120,7 @@ public class AccountDetailsBottomSheetFragment extends BottomSheetDialogFragment
             .setTitle("Signing Out?")
             .setMessage("Your pet care schedules, reminders, and health journals remain synced safely in the cloud.")
             .setPositiveButton("Confirm Log Out", (dialog, which) -> {
+                com.google.firebase.auth.FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(requireContext(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
