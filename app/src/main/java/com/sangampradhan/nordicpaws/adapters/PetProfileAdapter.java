@@ -1,14 +1,19 @@
 package com.sangampradhan.nordicpaws.adapters;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.sangampradhan.nordicpaws.R;
 import com.sangampradhan.nordicpaws.models.Pet;
+import com.sangampradhan.nordicpaws.utils.LocalStorageManager;
+
 import java.util.List;
 
 public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileAdapter.PetViewHolder> {
@@ -76,7 +81,20 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileAdapter.Pe
         }
 
         public void bind(Pet pet, OnPetClickListener listener) {
-            ivPetImage.setImageResource(pet.getAvatarResId());
+            // Check for uploaded custom local image first
+            if (pet.getLocalImagePath() != null && !pet.getLocalImagePath().isEmpty()) {
+                Bitmap bmp = LocalStorageManager.loadLocalBitmap(pet.getLocalImagePath());
+                if (bmp != null) {
+                    ivPetImage.setImageBitmap(bmp);
+                } else {
+                    int resId = pet.getAvatarResId() != 0 ? pet.getAvatarResId() : R.drawable.dog;
+                    ivPetImage.setImageResource(resId);
+                }
+            } else {
+                int resId = pet.getAvatarResId() != 0 ? pet.getAvatarResId() : R.drawable.dog;
+                ivPetImage.setImageResource(resId);
+            }
+
             tvPetName.setText(pet.getName());
             tvPetBreed.setText(pet.getBreedAndGender());
             tvStatusBadge.setText(pet.getStatusBadge());
@@ -86,7 +104,9 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileAdapter.Pe
             tvStat1Val.setText(pet.getStat1Val());
             tvStat2Label.setText(pet.getStat2Label());
             tvStat2Val.setText(pet.getStat2Val());
-            ivStat2Icon.setImageResource(pet.getStat2IconResId());
+            
+            int stat2ResId = pet.getStat2IconResId() != 0 ? pet.getStat2IconResId() : R.drawable.baseline_restaurant_24;
+            ivStat2Icon.setImageResource(stat2ResId);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) listener.onPetClick(pet);
