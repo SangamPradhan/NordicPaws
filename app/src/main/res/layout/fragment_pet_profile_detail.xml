@@ -61,6 +61,7 @@
                 android:layout_height="match_parent">
                 
                 <ImageView
+                    android:id="@+id/ivPetHeroPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/dog"
@@ -105,6 +106,7 @@
             android:layout_marginBottom="16dp">
 
             <TextView
+                android:id="@+id/tvPetDetailName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -130,6 +132,7 @@
                     app:tint="#6E5E0D"
                     android:layout_marginEnd="6dp"/>
                 <TextView
+                    android:id="@+id/tvPetDetailStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Healthy &amp; Active"
@@ -165,6 +168,7 @@
                     android:textSize="10sp"
                     android:fontFamily="@font/plusjakartasansbold"/>
                 <TextView
+                    android:id="@+id/tvPetDetailBreed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Golden Ret."
@@ -192,6 +196,7 @@
                     android:textSize="10sp"
                     android:fontFamily="@font/plusjakartasansbold"/>
                 <TextView
+                    android:id="@+id/tvPetDetailAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2y 4m"
@@ -219,6 +224,7 @@
                     android:textSize="10sp"
                     android:fontFamily="@font/plusjakartasansbold"/>
                 <TextView
+                    android:id="@+id/tvPetDetailWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="28.5 kg"
