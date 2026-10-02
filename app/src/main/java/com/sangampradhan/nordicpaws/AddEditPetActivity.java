@@ -33,6 +33,8 @@ public class AddEditPetActivity extends AppCompatActivity {
 
     private Uri selectedImageUri = null;
     private FirestoreManager firestoreManager;
+    private android.hardware.SensorManager sensorManager;
+    private com.sangampradhan.nordicpaws.utils.ShakeDetector shakeDetector;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -50,6 +52,11 @@ public class AddEditPetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_pet);
 
         firestoreManager = new FirestoreManager();
+
+        // Initialize Shake Sensor
+        sensorManager = (android.hardware.SensorManager) getSystemService(SENSOR_SERVICE);
+        shakeDetector = new com.sangampradhan.nordicpaws.utils.ShakeDetector();
+        shakeDetector.setOnShakeListener(this::resetFormFields);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
@@ -162,9 +169,44 @@ public class AddEditPetActivity extends AppCompatActivity {
                 });
     }
 
+    private void resetFormFields() {
+        if (etPetName != null) etPetName.setText("");
+        if (etPetBreed != null) etPetBreed.setText("");
+        if (etPetAge != null) etPetAge.setText("");
+        if (etPetWeight != null) etPetWeight.setText("");
+        if (etPetDiet != null) etPetDiet.setText("");
+        if (etPetAllergies != null) etPetAllergies.setText("");
+        if (etPetNotes != null) etPetNotes.setText("");
+        if (ivPetPhoto != null) {
+            ivPetPhoto.setImageDrawable(null);
+            ivPetPhoto.setVisibility(View.GONE);
+        }
+        selectedImageUri = null;
+        Toast.makeText(this, "Form reset by shake gesture! 📳", Toast.LENGTH_SHORT).show();
+    }
+
     private int getWordCount(String text) {
         if (TextUtils.isEmpty(text)) return 0;
         String[] words = text.trim().split("\\s+");
         return words.length;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sensorManager != null && shakeDetector != null) {
+            android.hardware.Sensor accelerometer = sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER);
+            if (accelerometer != null) {
+                sensorManager.registerListener(shakeDetector, accelerometer, android.hardware.SensorManager.SENSOR_DELAY_UI);
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (sensorManager != null && shakeDetector != null) {
+            sensorManager.unregisterListener(shakeDetector);
+        }
     }
 }
