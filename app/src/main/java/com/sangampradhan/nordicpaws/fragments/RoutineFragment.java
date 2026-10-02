@@ -1,5 +1,6 @@
 package com.sangampradhan.nordicpaws.fragments;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,8 @@ import com.sangampradhan.nordicpaws.adapters.CategoryAdapter;
 import com.sangampradhan.nordicpaws.adapters.RoutineTaskAdapter;
 import com.sangampradhan.nordicpaws.models.Pet;
 import com.sangampradhan.nordicpaws.models.RoutineTask;
-import com.sangampradhan.nordicpaws.utils.DummyData;
+import com.sangampradhan.nordicpaws.utils.FirestoreManager;
+import com.sangampradhan.nordicpaws.utils.LocalStorageManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +46,10 @@ public class RoutineFragment extends Fragment {
     private RoutineTaskAdapter taskAdapter;
     private CategoryAdapter categoryAdapter;
 
-    private String currentPetId = "1";
+    private FirestoreManager firestoreManager;
+    private String currentPetId = "";
     private String currentCategory = "All";
+    private List<Pet> userPets = new ArrayList<>();
     private List<RoutineTask> displayedTasks = new ArrayList<>();
 
     @Nullable
@@ -53,6 +57,8 @@ public class RoutineFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_routine, container, false);
         
+        firestoreManager = new FirestoreManager();
+
         activePetAvatar = view.findViewById(R.id.activePetAvatar);
         petSwitcherContainer = view.findViewById(R.id.petSwitcherContainer);
         progressCircle = view.findViewById(R.id.progressCircle);
@@ -63,7 +69,7 @@ public class RoutineFragment extends Fragment {
         rvTasks = view.findViewById(R.id.rvTasks);
         fabAddTask = view.findViewById(R.id.fabAddTask);
 
-        // Pet Switcher Logic
+        // Pet Switcher Click
         petSwitcherContainer.setOnClickListener(v -> showPetSelectionPopup());
 
         // Category setup
@@ -100,12 +106,16 @@ public class RoutineFragment extends Fragment {
         // FAB Setup opens AddActivityBottomSheetFragment
         fabAddTask.setOnClickListener(v -> {
             AddActivityBottomSheetFragment addSheet = new AddActivityBottomSheetFragment();
+            addSheet.setOnTasksSavedListener(this::loadTasks);
             addSheet.show(getParentFragmentManager(), "AddActivityBottomSheet");
         });
 
         setupSwipeGestures();
 
-        loadPetData();
+        // Seed initial data if Firestore is empty on first user login
+        firestoreManager.seedInitialPetsIfEmpty();
+
+        loadPetsFromFirestore();
 
         return view;
     }
@@ -123,13 +133,11 @@ public class RoutineFragment extends Fragment {
                 RoutineTask task = taskAdapter.getTask(position);
                 if (task != null) {
                     if (direction == androidx.recyclerview.widget.ItemTouchHelper.RIGHT) {
-                        // Edit
-                        taskAdapter.notifyItemChanged(position); // reset view
+                        taskAdapter.notifyItemChanged(position);
                         EditTaskBottomSheetFragment editSheet = EditTaskBottomSheetFragment.newInstance(task);
                         editSheet.show(getParentFragmentManager(), "EditTaskBottomSheet");
                     } else if (direction == androidx.recyclerview.widget.ItemTouchHelper.LEFT) {
-                        // Delete for today
-                        taskAdapter.notifyItemChanged(position); // reset view
+                        taskAdapter.notifyItemChanged(position);
                         showDeleteConfirmation(task, position);
                     }
                 }
@@ -154,24 +162,40 @@ public class RoutineFragment extends Fragment {
                 .show();
     }
 
+    private void loadPetsFromFirestore() {
+        firestoreManager.fetchPets(pets -> {
+            this.userPets = pets;
+            if (!pets.isEmpty()) {
+                if (currentPetId.isEmpty()) {
+                    currentPetId = pets.get(0).getId();
+                }
+                updateActivePetView();
+                loadTasks();
+            }
+        }, e -> {
+            Toast.makeText(getContext(), "Error loading pets from Firestore", Toast.LENGTH_SHORT).show();
+        });
+    }
+
     private void showPetSelectionPopup() {
+        if (userPets.isEmpty()) return;
         PopupMenu popup = new PopupMenu(getContext(), petSwitcherContainer);
-        List<Pet> pets = DummyData.getPets();
-        for (int i = 0; i < pets.size(); i++) {
-            popup.getMenu().add(0, i, 0, pets.get(i).getName());
+        for (int i = 0; i < userPets.size(); i++) {
+            popup.getMenu().add(0, i, 0, userPets.get(i).getName());
         }
         popup.setOnMenuItemClickListener(item -> {
-            Pet selectedPet = pets.get(item.getItemId());
+            Pet selectedPet = userPets.get(item.getItemId());
             currentPetId = selectedPet.getId();
-            loadPetData();
+            updateActivePetView();
+            loadTasks();
             return true;
         });
         popup.show();
     }
 
-    private void loadPetData() {
+    private void updateActivePetView() {
         Pet currentPet = null;
-        for (Pet p : DummyData.getPets()) {
+        for (Pet p : userPets) {
             if (p.getId().equals(currentPetId)) {
                 currentPet = p;
                 break;
@@ -179,17 +203,75 @@ public class RoutineFragment extends Fragment {
         }
         
         if (currentPet != null) {
-            activePetAvatar.setImageResource(currentPet.getAvatarResId());
             progressTitleText.setText(currentPet.getName() + "'s Day");
-        }
 
-        loadTasks();
+            // Set local image if available, or fallback drawable avatar
+            if (currentPet.getLocalImagePath() != null && !currentPet.getLocalImagePath().isEmpty()) {
+                Bitmap bmp = LocalStorageManager.loadLocalBitmap(currentPet.getLocalImagePath());
+                if (bmp != null) {
+                    activePetAvatar.setImageBitmap(bmp);
+                } else {
+                    activePetAvatar.setImageResource(currentPet.getAvatarResId() != 0 ? currentPet.getAvatarResId() : R.drawable.dog);
+                }
+            } else {
+                activePetAvatar.setImageResource(currentPet.getAvatarResId() != 0 ? currentPet.getAvatarResId() : R.drawable.dog);
+            }
+        }
     }
 
     private void loadTasks() {
-        displayedTasks = new ArrayList<>(DummyData.getTasksForPet(currentPetId, currentCategory));
-        taskAdapter.setTasks(displayedTasks);
-        updateProgress();
+        if (currentPetId.isEmpty()) return;
+        firestoreManager.fetchTasksForPet(currentPetId, tasks -> {
+            displayedTasks = new ArrayList<>();
+            for (RoutineTask t : tasks) {
+                boolean categoryMatches = "All".equals(currentCategory) || currentCategory.equalsIgnoreCase(t.getCategory());
+                boolean scheduleMatches = isTaskScheduledForToday(t);
+
+                if (categoryMatches && scheduleMatches) {
+                    displayedTasks.add(t);
+                }
+            }
+            taskAdapter.setTasks(displayedTasks);
+            updateProgress();
+        }, e -> {
+            Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private boolean isTaskScheduledForToday(RoutineTask task) {
+        String scheduleType = task.getScheduleType();
+        if (scheduleType == null || "DAILY".equalsIgnoreCase(scheduleType)) {
+            return true;
+        }
+
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        String todayDateStr = RoutineTask.getTodayDateString(); // e.g. 2026-10-01
+        int dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK);
+        String[] dayNames = new String[]{"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+        String todayDayOfWeek = dayNames[dayOfWeek - 1];
+        int todayDayOfMonth = calendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+        if ("SPECIFIC_DAYS".equalsIgnoreCase(scheduleType) || "WEEKLY".equalsIgnoreCase(scheduleType)) {
+            List<String> days = task.getDaysOfWeek();
+            return days != null && days.contains(todayDayOfWeek);
+        } else if ("MONTHLY".equalsIgnoreCase(scheduleType)) {
+            List<String> days = task.getDaysOfWeek();
+            if (days != null && !days.isEmpty()) {
+                try {
+                    int scheduledDay = Integer.parseInt(days.get(0));
+                    return scheduledDay == todayDayOfMonth;
+                } catch (Exception ignored) {}
+            }
+            return true;
+        } else if ("ONCE".equalsIgnoreCase(scheduleType) || "SPECIFIC_DATE".equalsIgnoreCase(scheduleType)) {
+            List<String> days = task.getDaysOfWeek();
+            if (days != null && !days.isEmpty()) {
+                return days.get(0).equals(todayDateStr);
+            }
+            return true;
+        }
+
+        return true;
     }
 
     private void updateProgress() {
@@ -212,5 +294,6 @@ public class RoutineFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity()).setTopBarTitle("ROUTINE");
         }
+        loadPetsFromFirestore();
     }
 }
