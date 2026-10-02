@@ -69,7 +69,7 @@ public class PetProfileListFragment extends Fragment {
             @Override
             public void onPetClick(Pet pet) {
                 if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).loadFragment(new PetProfileDetailFragment(), true);
+                    ((MainActivity) getActivity()).loadFragment(PetProfileDetailFragment.newInstance(pet), true);
                 }
             }
 
@@ -103,7 +103,7 @@ public class PetProfileListFragment extends Fragment {
                 @Override
                 public void onPetClick(Pet pet) {
                     if (getActivity() instanceof MainActivity) {
-                        ((MainActivity) getActivity()).loadFragment(new PetProfileDetailFragment(), true);
+                        ((MainActivity) getActivity()).loadFragment(PetProfileDetailFragment.newInstance(pet), true);
                     }
                 }
 
