@@ -90,6 +90,7 @@ public class RoutineFragment extends Fragment {
             @Override
             public void onEditTask(RoutineTask task) {
                 EditTaskBottomSheetFragment editSheet = EditTaskBottomSheetFragment.newInstance(task);
+                editSheet.setOnTaskUpdatedListener(() -> loadTasks());
                 editSheet.show(getParentFragmentManager(), "EditTaskBottomSheet");
             }
 
@@ -99,6 +100,11 @@ public class RoutineFragment extends Fragment {
                 taskAdapter.notifyDataSetChanged();
                 updateProgress();
                 Toast.makeText(getContext(), "Task removed for today", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDeleteTask(RoutineTask task) {
+                showPermanentDeleteConfirmation(task);
             }
         });
         rvTasks.setAdapter(taskAdapter);
@@ -135,10 +141,11 @@ public class RoutineFragment extends Fragment {
                     if (direction == androidx.recyclerview.widget.ItemTouchHelper.RIGHT) {
                         taskAdapter.notifyItemChanged(position);
                         EditTaskBottomSheetFragment editSheet = EditTaskBottomSheetFragment.newInstance(task);
+                        editSheet.setOnTaskUpdatedListener(() -> loadTasks());
                         editSheet.show(getParentFragmentManager(), "EditTaskBottomSheet");
                     } else if (direction == androidx.recyclerview.widget.ItemTouchHelper.LEFT) {
                         taskAdapter.notifyItemChanged(position);
-                        showDeleteConfirmation(task, position);
+                        showPermanentDeleteConfirmation(task);
                     }
                 }
             }
@@ -157,6 +164,25 @@ public class RoutineFragment extends Fragment {
                     taskAdapter.notifyItemRemoved(position);
                     updateProgress();
                     Toast.makeText(getContext(), "Task removed for today", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * Permanently deletes a task from Firestore after user confirmation.
+     */
+    private void showPermanentDeleteConfirmation(RoutineTask task) {
+        new androidx.appcompat.app.AlertDialog.Builder(getContext())
+                .setTitle("Delete Task Permanently?")
+                .setMessage("This will permanently remove \"" + task.getTitle() + "\" from the schedule. This cannot be undone.")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    firestoreManager.deleteTask(task.getPetId(), task.getId(),
+                            aVoid -> {
+                                Toast.makeText(getContext(), "Task deleted permanently 🗑️", Toast.LENGTH_SHORT).show();
+                                loadTasks();
+                            },
+                            e -> Toast.makeText(getContext(), "Failed to delete task", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
