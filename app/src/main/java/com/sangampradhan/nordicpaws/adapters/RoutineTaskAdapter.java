@@ -3,6 +3,7 @@ package com.sangampradhan.nordicpaws.adapters;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sangampradhan.nordicpaws.R;
 import com.sangampradhan.nordicpaws.models.RoutineTask;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.TaskViewHolder> {
@@ -31,6 +34,7 @@ public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.
         void onStatusChanged();
         void onEditTask(RoutineTask task);
         void onRemoveTodayTask(RoutineTask task);
+        void onDeleteTask(RoutineTask task);
     }
 
     public RoutineTaskAdapter(List<RoutineTask> tasks, OnTaskActionListener actionListener) {
@@ -40,7 +44,31 @@ public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.
 
     public void setTasks(List<RoutineTask> tasks) {
         this.tasks = tasks;
+        // Sort tasks by time ascending
+        Collections.sort(this.tasks, (t1, t2) -> {
+            String time1 = t1.getTime() != null ? t1.getTime() : "";
+            String time2 = t2.getTime() != null ? t2.getTime() : "";
+            return parseTimeToMinutes(time1) - parseTimeToMinutes(time2);
+        });
         notifyDataSetChanged();
+    }
+
+    /**
+     * Parses "hh:mm AM/PM" to total minutes for sorting.
+     */
+    private int parseTimeToMinutes(String time) {
+        try {
+            String[] parts = time.trim().split(" ");
+            String[] hm = parts[0].split(":");
+            int hour = Integer.parseInt(hm[0]);
+            int minute = Integer.parseInt(hm[1]);
+            boolean isPM = parts.length > 1 && parts[1].equalsIgnoreCase("PM");
+            if (isPM && hour != 12) hour += 12;
+            if (!isPM && hour == 12) hour = 0;
+            return hour * 60 + minute;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @NonNull
@@ -139,6 +167,11 @@ public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.
                             actionListener.onRemoveTodayTask(currentTask);
                         }
                         return true;
+                    } else if (itemId == R.id.action_delete_task) {
+                        if (actionListener != null) {
+                            actionListener.onDeleteTask(currentTask);
+                        }
+                        return true;
                     }
                     return false;
                 });
@@ -151,9 +184,9 @@ public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.
             taskTime.setText(task.getTime());
             taskCategoryTag.setText(task.getCategory());
             
-            // Default recurrence display or notes
-            taskRecurrenceTag.setText("DAILY");
-            taskNotes.setText("1.5 scoops kibble mixed with probiotic powder. Keep fresh spring water refilled.");
+            // Dynamic recurrence display based on schedule type
+            taskRecurrenceTag.setText(getRecurrenceDisplayText(task));
+            taskNotes.setText(task.getTitle() != null ? task.getTitle() : "");
             
             // Category icon & background color
             String category = task.getCategory();
@@ -202,6 +235,35 @@ public class RoutineTaskAdapter extends RecyclerView.Adapter<RoutineTaskAdapter.
                 taskStatusText.setTextColor(Color.parseColor("#76777b"));
                 taskTime.setTextColor(Color.parseColor("#76777b"));
             }
+        }
+
+        /**
+         * Returns a human-readable recurrence label based on scheduleType and daysOfWeek.
+         */
+        private String getRecurrenceDisplayText(RoutineTask task) {
+            String type = task.getScheduleType();
+            if (type == null || "DAILY".equalsIgnoreCase(type)) {
+                return "DAILY";
+            } else if ("SPECIFIC_DAYS".equalsIgnoreCase(type) || "WEEKLY".equalsIgnoreCase(type)) {
+                List<String> days = task.getDaysOfWeek();
+                if (days != null && !days.isEmpty()) {
+                    return "WEEKLY • " + TextUtils.join(", ", days);
+                }
+                return "WEEKLY";
+            } else if ("MONTHLY".equalsIgnoreCase(type)) {
+                List<String> days = task.getDaysOfWeek();
+                if (days != null && !days.isEmpty()) {
+                    return "MONTHLY • Day " + days.get(0);
+                }
+                return "MONTHLY";
+            } else if ("ONCE".equalsIgnoreCase(type) || "SPECIFIC_DATE".equalsIgnoreCase(type)) {
+                List<String> days = task.getDaysOfWeek();
+                if (days != null && !days.isEmpty()) {
+                    return "ONCE • " + days.get(0);
+                }
+                return "ONCE";
+            }
+            return "DAILY";
         }
     }
 }
