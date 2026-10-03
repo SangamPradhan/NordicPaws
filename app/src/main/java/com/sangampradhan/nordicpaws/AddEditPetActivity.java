@@ -1,6 +1,7 @@
 package com.sangampradhan.nordicpaws;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -28,6 +30,7 @@ public class AddEditPetActivity extends AppCompatActivity {
 
     private CardView cardPhoto;
     private ImageView ivPetPhoto;
+    private TextView tvScreenTitle;
     private EditText etPetName, etPetBreed, etPetAge, etPetWeight, etPetDiet, etPetAllergies, etPetNotes;
     private MaterialButton btnSavePet;
 
@@ -35,6 +38,11 @@ public class AddEditPetActivity extends AppCompatActivity {
     private FirestoreManager firestoreManager;
     private android.hardware.SensorManager sensorManager;
     private com.sangampradhan.nordicpaws.utils.ShakeDetector shakeDetector;
+
+    // Edit mode fields
+    private boolean isEditMode = false;
+    private String editPetId = null;
+    private Pet existingPet = null;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -61,6 +69,7 @@ public class AddEditPetActivity extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
+        tvScreenTitle = findViewById(R.id.tvScreenTitle);
         cardPhoto = findViewById(R.id.cardPhoto);
         ivPetPhoto = findViewById(R.id.ivPetPhoto);
 
@@ -76,7 +85,64 @@ public class AddEditPetActivity extends AppCompatActivity {
         // Open Gallery Image Picker
         cardPhoto.setOnClickListener(v -> openGalleryPicker());
 
+        // Check if we are in edit mode
+        editPetId = getIntent().getStringExtra("PET_ID");
+        if (editPetId != null && !editPetId.isEmpty()) {
+            isEditMode = true;
+            tvScreenTitle.setText("Edit Pet Profile");
+            btnSavePet.setText("Update Pet Profile");
+            loadExistingPetData(editPetId);
+        }
+
         btnSavePet.setOnClickListener(v -> savePetProfile());
+    }
+
+    /**
+     * Loads the existing pet data from Firestore and populates the form fields.
+     */
+    private void loadExistingPetData(String petId) {
+        firestoreManager.fetchPetById(petId, pet -> {
+            if (pet == null) {
+                Toast.makeText(this, "Pet not found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            existingPet = pet;
+
+            // Populate form fields
+            etPetName.setText(pet.getName());
+            etPetBreed.setText(pet.getBreedAndGender());
+            etPetAge.setText(pet.getTagAge());
+            etPetWeight.setText(pet.getStat1Val());
+
+            // Diet stored in stat2Val
+            if (pet.getStat2Val() != null && !pet.getStat2Val().equals("Balanced Diet")) {
+                etPetDiet.setText(pet.getStat2Val());
+            }
+
+            // Allergies stored in tagOther
+            if (pet.getTagOther() != null && !pet.getTagOther().equals("No known allergies")) {
+                etPetAllergies.setText(pet.getTagOther());
+            }
+
+            // Notes from statusBadge
+            if (pet.getStatusBadge() != null && !pet.getStatusBadge().equals("Active Wellness Plan")) {
+                etPetNotes.setText(pet.getStatusBadge());
+            }
+
+            // Load existing image
+            if (pet.getLocalImagePath() != null && !pet.getLocalImagePath().isEmpty()) {
+                Bitmap bmp = LocalStorageManager.loadLocalBitmap(pet.getLocalImagePath());
+                if (bmp != null) {
+                    ivPetPhoto.setImageBitmap(bmp);
+                    ivPetPhoto.setVisibility(View.VISIBLE);
+                }
+            } else if (pet.getAvatarResId() != 0) {
+                ivPetPhoto.setImageResource(pet.getAvatarResId());
+                ivPetPhoto.setVisibility(View.VISIBLE);
+            }
+        }, e -> {
+            Toast.makeText(this, "Failed to load pet: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void openGalleryPicker() {
@@ -129,42 +195,68 @@ public class AddEditPetActivity extends AppCompatActivity {
         }
 
         btnSavePet.setEnabled(false);
-        btnSavePet.setText("Saving Pet Profile...");
+        btnSavePet.setText(isEditMode ? "Updating Pet Profile..." : "Saving Pet Profile...");
 
         String userId = FirebaseAuth.getInstance().getCurrentUser() != null ?
                 FirebaseAuth.getInstance().getCurrentUser().getUid() : "guest";
 
-        String petId = "pet_" + UUID.randomUUID().toString().substring(0, 8);
+        // Use existing pet ID in edit mode, generate new one otherwise
+        String petId = isEditMode ? editPetId : "pet_" + UUID.randomUUID().toString().substring(0, 8);
+
         String localImagePath = null;
+
+        // Preserve existing local image path in edit mode if no new image selected
+        if (isEditMode && existingPet != null && selectedImageUri == null) {
+            localImagePath = existingPet.getLocalImagePath();
+        }
 
         // Save selected image to device local app storage if provided
         if (selectedImageUri != null) {
             localImagePath = LocalStorageManager.savePetImage(this, userId, petId, selectedImageUri);
         }
 
-        Pet pet = new Pet();
-        pet.setId(petId);
-        pet.setName(name);
-        pet.setBreedAndGender(breed);
-        pet.setStatusBadge("Active Wellness Plan");
-        pet.setTagType(breed.contains("Cat") ? "Cat" : "Dog");
-        pet.setTagAge(age.isEmpty() ? "Unknown age" : age);
-        pet.setTagOther(allergies.isEmpty() ? "No known allergies" : allergies);
-        pet.setStat1Val(weight.isEmpty() ? "N/A" : weight);
-        pet.setStat2Label(diet.isEmpty() ? "NUTRITION" : "DIET");
-        pet.setStat2Val(diet.isEmpty() ? "Balanced Diet" : diet);
-        pet.setAvatarResId(R.drawable.dog); // Default fallback icon
-        pet.setLocalImagePath(localImagePath);
+        Pet pet;
+        if (isEditMode && existingPet != null) {
+            // Preserve existing fields that aren't in the form
+            pet = existingPet;
+            pet.setName(name);
+            pet.setBreedAndGender(breed);
+            pet.setTagAge(age.isEmpty() ? "Unknown age" : age);
+            pet.setStat1Val(weight.isEmpty() ? "N/A" : weight);
+            pet.setTagOther(allergies.isEmpty() ? "No known allergies" : allergies);
+            pet.setStat2Label(diet.isEmpty() ? "NUTRITION" : "DIET");
+            pet.setStat2Val(diet.isEmpty() ? "Balanced Diet" : diet);
+            pet.setStatusBadge(notes.isEmpty() ? "Active Wellness Plan" : notes);
+            pet.setTagType(breed.contains("Cat") ? "Cat" : "Dog");
+            pet.setLocalImagePath(localImagePath);
+        } else {
+            pet = new Pet();
+            pet.setId(petId);
+            pet.setName(name);
+            pet.setBreedAndGender(breed);
+            pet.setStatusBadge(notes.isEmpty() ? "Active Wellness Plan" : notes);
+            pet.setTagType(breed.contains("Cat") ? "Cat" : "Dog");
+            pet.setTagAge(age.isEmpty() ? "Unknown age" : age);
+            pet.setTagOther(allergies.isEmpty() ? "No known allergies" : allergies);
+            pet.setStat1Val(weight.isEmpty() ? "N/A" : weight);
+            pet.setStat2Label(diet.isEmpty() ? "NUTRITION" : "DIET");
+            pet.setStat2Val(diet.isEmpty() ? "Balanced Diet" : diet);
+            pet.setAvatarResId(R.drawable.dog); // Default fallback icon
+            pet.setLocalImagePath(localImagePath);
+        }
 
         // Save pet to Cloud Firestore
         firestoreManager.savePet(pet,
                 aVoid -> {
-                    Toast.makeText(AddEditPetActivity.this, name + "'s profile saved successfully! 🐾", Toast.LENGTH_LONG).show();
+                    String msg = isEditMode ?
+                            name + "'s profile updated successfully! ✅" :
+                            name + "'s profile saved successfully! 🐾";
+                    Toast.makeText(AddEditPetActivity.this, msg, Toast.LENGTH_LONG).show();
                     finish();
                 },
                 e -> {
                     btnSavePet.setEnabled(true);
-                    btnSavePet.setText("Save Pet Profile");
+                    btnSavePet.setText(isEditMode ? "Update Pet Profile" : "Save Pet Profile");
                     Toast.makeText(AddEditPetActivity.this, "Failed to save pet: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 });
     }
