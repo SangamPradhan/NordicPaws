@@ -163,9 +163,21 @@ public class PetProfileListFragment extends Fragment {
     private void showDeleteConfirmation(Pet pet, int position) {
         new androidx.appcompat.app.AlertDialog.Builder(getContext())
                 .setTitle("Delete Pet")
-                .setMessage("Are you sure you want to remove " + pet.getName() + " from your profile?")
+                .setMessage("Are you sure you want to remove " + pet.getName() + " from your profile?\n\nThis will also permanently delete ALL tasks and routines associated with " + pet.getName() + ".")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    adapter.removePet(position);
+                    firestoreManager.deletePetWithTasks(pet.getId(),
+                            aVoid -> {
+                                // Also clean up local images
+                                if (pet.getLocalImagePath() != null && !pet.getLocalImagePath().isEmpty()) {
+                                    try {
+                                        java.io.File imageFile = new java.io.File(pet.getLocalImagePath());
+                                        if (imageFile.exists()) imageFile.delete();
+                                    } catch (Exception ignored) {}
+                                }
+                                Toast.makeText(getContext(), pet.getName() + "'s profile deleted 🗑️", Toast.LENGTH_SHORT).show();
+                                loadPetsFromFirestore();
+                            },
+                            e -> Toast.makeText(getContext(), "Failed to delete pet: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
