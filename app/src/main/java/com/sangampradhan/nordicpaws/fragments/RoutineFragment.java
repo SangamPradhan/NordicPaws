@@ -42,6 +42,7 @@ public class RoutineFragment extends Fragment {
     private RecyclerView rvCategories;
     private RecyclerView rvTasks;
     private FloatingActionButton fabAddTask;
+    private FloatingActionButton fabDelegateTask;
 
     private RoutineTaskAdapter taskAdapter;
     private CategoryAdapter categoryAdapter;
@@ -68,6 +69,7 @@ public class RoutineFragment extends Fragment {
         rvCategories = view.findViewById(R.id.rvCategories);
         rvTasks = view.findViewById(R.id.rvTasks);
         fabAddTask = view.findViewById(R.id.fabAddTask);
+        fabDelegateTask = view.findViewById(R.id.fabDelegateTask);
 
         // Pet Switcher Click
         petSwitcherContainer.setOnClickListener(v -> showPetSelectionPopup());
@@ -114,6 +116,13 @@ public class RoutineFragment extends Fragment {
             AddActivityBottomSheetFragment addSheet = new AddActivityBottomSheetFragment();
             addSheet.setOnTasksSavedListener(this::loadTasks);
             addSheet.show(getParentFragmentManager(), "AddActivityBottomSheet");
+        });
+
+        // FAB Setup opens CareDelegationFragment
+        fabDelegateTask.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).loadFragment(new CareDelegationFragment(), true);
+            }
         });
 
         setupSwipeGestures();
