@@ -164,6 +164,12 @@ public class MainActivity extends AppCompatActivity {
      * @param addToBackStack Whether to add this transaction to the back stack.
      */
     public void loadFragment(Fragment fragment, boolean addToBackStack) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (currentFragment != null && currentFragment.getClass().equals(fragment.getClass())) {
+            // Prevent reloading the same fragment to avoid back stack loop
+            return;
+        }
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         transaction.replace(R.id.fragment_container, fragment);
