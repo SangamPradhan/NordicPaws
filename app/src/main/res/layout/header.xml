@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Meals Mate"
+        android:text="Nordic Paws"
         android:fontFamily="@font/cursive"
         android:textSize="20sp"
         android:textColor="@color/black"
