@@ -177,6 +177,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Delegate Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDelegateTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="172dp"
+        android:src="@drawable/send"
+        app:backgroundTint="@color/secondary_yellow"
+        app:tint="@color/primary_black" />
+
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTask"
