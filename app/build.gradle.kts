@@ -56,4 +56,7 @@ dependencies {
 
     // Cloud Functions
     implementation("com.google.firebase:firebase-functions")
+
+    // Lottie animation
+    implementation("com.airbnb.android:lottie:6.4.0")
 }
