@@ -15,13 +15,15 @@ import android.widget.PopupMenu;
 import java.util.List;
 import java.util.ArrayList;
 import com.sangampradhan.nordicpaws.models.Pet;
-import com.sangampradhan.nordicpaws.utils.DummyData;
+
 import com.sangampradhan.nordicpaws.fragments.HomeFragment;
 import com.sangampradhan.nordicpaws.fragments.PetProfileListFragment;
 import com.sangampradhan.nordicpaws.fragments.PlacesFragment;
 import com.sangampradhan.nordicpaws.fragments.ProfileFragment;
 import com.sangampradhan.nordicpaws.fragments.RoutineFragment;
 import com.sangampradhan.nordicpaws.fragments.AccountDetailsBottomSheetFragment;
+import com.sangampradhan.nordicpaws.utils.FirestoreManager;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,6 +106,40 @@ public class MainActivity extends AppCompatActivity {
 
         // Load default tab
         selectTab(0);
+        loadUserProfileImage();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserProfileImage();
+    }
+
+    private void loadUserProfileImage() {
+        com.google.firebase.auth.FirebaseUser fUser = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null && profileImage != null) {
+            com.google.firebase.firestore.FirebaseFirestore.getInstance().collection("users").document(fUser.getUid()).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        com.sangampradhan.nordicpaws.models.User user = documentSnapshot.toObject(com.sangampradhan.nordicpaws.models.User.class);
+                        if (user != null && user.getLocalProfileImagePath() != null && !user.getLocalProfileImagePath().isEmpty()) {
+                            try {
+                                profileImage.setImageURI(android.net.Uri.parse(user.getLocalProfileImagePath()));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                profileImage.setImageResource(R.drawable.person);
+                            }
+                        } else {
+                            profileImage.setImageResource(R.drawable.person);
+                        }
+                    } else {
+                        profileImage.setImageResource(R.drawable.person);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    profileImage.setImageResource(R.drawable.person);
+                });
+        }
     }
 
     private void selectTab(int index) {
@@ -190,20 +226,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showPetSelectionPopup() {
-        PopupMenu popup = new PopupMenu(this, profileImage);
-        List<Pet> pets = DummyData.getPets();
-        for (int i = 0; i < pets.size(); i++) {
-            popup.getMenu().add(0, i, 0, pets.get(i).getName());
-        }
-        popup.setOnMenuItemClickListener(item -> {
-            Pet selectedPet = pets.get(item.getItemId());
-            selectedPetId = selectedPet.getId();
-            profileImage.setImageResource(selectedPet.getAvatarResId());
-            for (PetSelectionListener listener : petSelectionListeners) {
-                listener.onPetSelected(selectedPetId);
+        FirestoreManager fm = new FirestoreManager();
+        fm.fetchPets(pets -> {
+            if (pets == null || pets.isEmpty()) {
+                Toast.makeText(this, "No pets found. Add a pet first.", Toast.LENGTH_SHORT).show();
+                return;
             }
-            return true;
-        });
-        popup.show();
+            PopupMenu popup = new PopupMenu(this, profileImage);
+            for (int i = 0; i < pets.size(); i++) {
+                popup.getMenu().add(0, i, 0, pets.get(i).getName());
+            }
+            popup.setOnMenuItemClickListener(item -> {
+                Pet selectedPet = pets.get(item.getItemId());
+                selectedPetId = selectedPet.getId();
+                if (selectedPet.getLocalImagePath() != null && !selectedPet.getLocalImagePath().isEmpty()) {
+                    try {
+                        profileImage.setImageURI(android.net.Uri.parse(selectedPet.getLocalImagePath()));
+                    } catch (Exception e) {
+                        profileImage.setImageResource(R.drawable.dog);
+                    }
+                } else {
+                    profileImage.setImageResource(selectedPet.getAvatarResId() != 0 ? selectedPet.getAvatarResId() : R.drawable.dog);
+                }
+                for (PetSelectionListener listener : petSelectionListeners) {
+                    listener.onPetSelected(selectedPetId);
+                }
+                return true;
+            });
+            popup.show();
+        }, e -> Toast.makeText(this, "Failed to load pets", Toast.LENGTH_SHORT).show());
     }
 }
