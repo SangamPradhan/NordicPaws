@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/surface_white">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_view"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:lottie_rawRes="@raw/pawsanimation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_speed="1.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NordicPaws"
+        android:textColor="@color/primary_black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/plusjakartasansbold"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Pet's Best Life, Organized."
+        android:textColor="@color/neutral_slate"
+        android:textSize="16sp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>
