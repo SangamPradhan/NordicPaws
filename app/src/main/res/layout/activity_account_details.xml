@@ -119,7 +119,7 @@
                     android:id="@+id/accountUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alex Morgan"
+                    android:text=""
                     android:textColor="@color/primary_black"
                     android:textSize="22sp"
                     android:fontFamily="@font/plusjakartasansbold"/>
@@ -204,8 +204,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:text="Alex Morgan"
+                            android:hint="Full name"
                             android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
                             android:fontFamily="@font/plus_jakarta_sans_regular"
                             android:inputType="textPersonName"/>
@@ -257,11 +258,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:text="alex.morgan@petcare.com"
-                            android:textColor="@color/primary_black"
+                            android:hint="Email address"
+                            android:textColor="@color/neutral_slate"
+                            android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
                             android:fontFamily="@font/plus_jakarta_sans_regular"
-                            android:inputType="textEmailAddress"/>
+                            android:inputType="textEmailAddress"
+                            android:enabled="false"/>
                     </LinearLayout>
 
                     <!-- Phone -->
@@ -292,8 +295,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:text="+1 (555) 234-5678"
+                            android:hint="Mobile number"
                             android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
                             android:fontFamily="@font/plus_jakarta_sans_regular"
                             android:inputType="phone"/>
@@ -326,8 +330,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:text="San Francisco, CA (94110)"
+                            android:hint="Address / Postal"
                             android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
                             android:fontFamily="@font/plus_jakarta_sans_regular"
                             android:inputType="text"/>
@@ -413,8 +418,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:text="············"
+                            android:hint="Enter current password"
                             android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
                             android:fontFamily="@font/plus_jakarta_sans_regular"
                             android:inputType="textPassword"/>
@@ -457,7 +463,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:hint="Enter at least 8 characters"
+                            android:hint="Enter at least 6 characters"
                             android:textColor="@color/primary_black"
                             android:textColorHint="@color/neutral_slate"
                             android:textSize="14sp"
@@ -465,6 +471,51 @@
                             android:inputType="textPassword"/>
                         <ImageView
                             android:id="@+id/btnToggleNewPwd"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_visibility"
+                            app:tint="@color/neutral_slate"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+
+                    <!-- Confirm Password -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Confirm New Password"
+                        android:textColor="@color/neutral_slate"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/plusjakartasanssemibold"
+                        android:layout_marginBottom="6dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_rounded_input"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="12dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/neutral_slate"
+                            android:layout_marginEnd="10dp"/>
+                        <EditText
+                            android:id="@+id/etConfirmPassword"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="Re-enter password"
+                            android:textColor="@color/primary_black"
+                            android:textColorHint="@color/neutral_slate"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/plus_jakarta_sans_regular"
+                            android:inputType="textPassword"/>
+                        <ImageView
+                            android:id="@+id/btnToggleConfirmPwd"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_visibility"
