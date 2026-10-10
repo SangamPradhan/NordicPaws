@@ -31,7 +31,7 @@ public class AddEditPetActivity extends AppCompatActivity {
     private CardView cardPhoto;
     private ImageView ivPetPhoto;
     private TextView tvScreenTitle;
-    private EditText etPetName, etPetBreed, etPetAge, etPetWeight, etPetDiet, etPetAllergies, etPetNotes;
+    private EditText etPetName, etPetCategory, etPetBreed, etPetAge, etPetWeight, etPetDiet, etPetAllergies, etPetNotes;
     private MaterialButton btnSavePet;
 
     private Uri selectedImageUri = null;
@@ -74,6 +74,7 @@ public class AddEditPetActivity extends AppCompatActivity {
         ivPetPhoto = findViewById(R.id.ivPetPhoto);
 
         etPetName = findViewById(R.id.etPetName);
+        etPetCategory = findViewById(R.id.etPetCategory);
         etPetBreed = findViewById(R.id.etPetBreed);
         etPetAge = findViewById(R.id.etPetAge);
         etPetWeight = findViewById(R.id.etPetWeight);
@@ -110,6 +111,7 @@ public class AddEditPetActivity extends AppCompatActivity {
 
             // Populate form fields
             etPetName.setText(pet.getName());
+            if (pet.getPetCategory() != null) etPetCategory.setText(pet.getPetCategory());
             etPetBreed.setText(pet.getBreedAndGender());
             etPetAge.setText(pet.getTagAge());
             etPetWeight.setText(pet.getStat1Val());
@@ -152,6 +154,7 @@ public class AddEditPetActivity extends AppCompatActivity {
 
     private void savePetProfile() {
         String name = etPetName.getText().toString().trim();
+        String category = etPetCategory.getText().toString().trim();
         String breed = etPetBreed.getText().toString().trim();
         String age = etPetAge.getText().toString().trim();
         String weight = etPetWeight.getText().toString().trim();
@@ -159,16 +162,34 @@ public class AddEditPetActivity extends AppCompatActivity {
         String allergies = etPetAllergies.getText().toString().trim();
         String notes = etPetNotes.getText().toString().trim();
 
-        // 1. Mandatory Name & Breed validation
+        // 1. Mandatory field validation
         if (TextUtils.isEmpty(name)) {
             etPetName.setError("Pet name is required");
             etPetName.requestFocus();
             return;
         }
 
+        if (TextUtils.isEmpty(category)) {
+            etPetCategory.setError("Pet type is required (e.g. Dog, Cat, Bird)");
+            etPetCategory.requestFocus();
+            return;
+        }
+
         if (TextUtils.isEmpty(breed)) {
             etPetBreed.setError("Breed / Species is required");
             etPetBreed.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(age)) {
+            etPetAge.setError("Age is required");
+            etPetAge.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(weight)) {
+            etPetWeight.setError("Weight is required");
+            etPetWeight.requestFocus();
             return;
         }
 
@@ -220,25 +241,27 @@ public class AddEditPetActivity extends AppCompatActivity {
             // Preserve existing fields that aren't in the form
             pet = existingPet;
             pet.setName(name);
+            pet.setPetCategory(category);
             pet.setBreedAndGender(breed);
-            pet.setTagAge(age.isEmpty() ? "Unknown age" : age);
-            pet.setStat1Val(weight.isEmpty() ? "N/A" : weight);
+            pet.setTagAge(age);
+            pet.setStat1Val(weight);
             pet.setTagOther(allergies.isEmpty() ? "No known allergies" : allergies);
             pet.setStat2Label(diet.isEmpty() ? "NUTRITION" : "DIET");
             pet.setStat2Val(diet.isEmpty() ? "Balanced Diet" : diet);
-            pet.setStatusBadge(notes.isEmpty() ? "Active Wellness Plan" : notes);
-            pet.setTagType(breed.contains("Cat") ? "Cat" : "Dog");
+            pet.setStatusBadge(notes.isEmpty() ? "" : notes);
+            pet.setTagType(category);
             pet.setLocalImagePath(localImagePath);
         } else {
             pet = new Pet();
             pet.setId(petId);
             pet.setName(name);
+            pet.setPetCategory(category);
             pet.setBreedAndGender(breed);
-            pet.setStatusBadge(notes.isEmpty() ? "Active Wellness Plan" : notes);
-            pet.setTagType(breed.contains("Cat") ? "Cat" : "Dog");
-            pet.setTagAge(age.isEmpty() ? "Unknown age" : age);
+            pet.setStatusBadge(notes.isEmpty() ? "" : notes);
+            pet.setTagType(category);
+            pet.setTagAge(age);
             pet.setTagOther(allergies.isEmpty() ? "No known allergies" : allergies);
-            pet.setStat1Val(weight.isEmpty() ? "N/A" : weight);
+            pet.setStat1Val(weight);
             pet.setStat2Label(diet.isEmpty() ? "NUTRITION" : "DIET");
             pet.setStat2Val(diet.isEmpty() ? "Balanced Diet" : diet);
             pet.setAvatarResId(R.drawable.dog); // Default fallback icon
@@ -263,6 +286,7 @@ public class AddEditPetActivity extends AppCompatActivity {
 
     private void resetFormFields() {
         if (etPetName != null) etPetName.setText("");
+        if (etPetCategory != null) etPetCategory.setText("");
         if (etPetBreed != null) etPetBreed.setText("");
         if (etPetAge != null) etPetAge.setText("");
         if (etPetWeight != null) etPetWeight.setText("");
