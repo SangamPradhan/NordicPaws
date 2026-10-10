@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "462351513385",
-    "project_id": "nordicpaws-122e6",
-    "storage_bucket": "nordicpaws-122e6.firebasestorage.app"
+    "project_number": "466958270986",
+    "firebase_url": "https://nordicpaw-f3e30-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nordicpaw-f3e30",
+    "storage_bucket": "nordicpaw-f3e30.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:462351513385:android:a834592a9426387964e938",
+        "mobilesdk_app_id": "1:466958270986:android:c0666f87521633391f55f3",
         "android_client_info": {
-          "package_name": "com.sangampradhan.nordicpaws"
+          "package_name": "com.bikramthapa.nordicpaw"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC1IvarPdI_eYpoK2-lHU-_x2zuW3vQXwQ"
+          "current_key": "AIzaSyD1-mn1bjJzsb93toK6tI1W6z7WcggQt8s"
         }
       ],
       "services": {
