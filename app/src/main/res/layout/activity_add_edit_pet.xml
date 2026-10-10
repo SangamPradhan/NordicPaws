@@ -248,6 +248,52 @@
                     android:inputType="textPersonName"/>
             </LinearLayout>
 
+            <!-- Pet Type / Category -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pet Type *"
+                android:textColor="@color/primary_black"
+                android:textSize="14sp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="6dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_rounded_input"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#EFF4FF"
+                    android:layout_marginEnd="8dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_favorite_24"
+                        app:tint="@color/neutral_slate"/>
+                </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/etPetCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="e.g. Dog, Cat, Bird, Horse, Tortoise…"
+                    android:textColor="@color/primary_black"
+                    android:textColorHint="@color/neutral_slate"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plus_jakarta_sans_regular"
+                    android:inputType="text"
+                    android:capitalize="words"/>
+            </LinearLayout>
+
             <!-- Breed / Species -->
             <TextView
                 android:layout_width="wrap_content"
