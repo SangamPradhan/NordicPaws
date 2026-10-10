@@ -3,6 +3,7 @@ package com.sangampradhan.nordicpaws.models;
 public class Pet {
     private String id;
     private String name;
+    private String petCategory;   // e.g. Dog, Cat, Bird, Horse, Tortoise …
     private String breedAndGender;
     private String statusBadge;
     private int avatarResId;
@@ -19,11 +20,12 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String id, String name, String breedAndGender, String statusBadge, int avatarResId, 
-               String tagType, String tagAge, String tagOther, 
+    public Pet(String id, String name, String petCategory, String breedAndGender, String statusBadge, int avatarResId,
+               String tagType, String tagAge, String tagOther,
                String stat1Val, String stat2Label, String stat2Val, int stat2IconResId) {
         this.id = id;
         this.name = name;
+        this.petCategory = petCategory;
         this.breedAndGender = breedAndGender;
         this.statusBadge = statusBadge;
         this.avatarResId = avatarResId;
@@ -41,6 +43,9 @@ public class Pet {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
+    public String getPetCategory() { return petCategory; }
+    public void setPetCategory(String petCategory) { this.petCategory = petCategory; }
 
     public String getBreedAndGender() { return breedAndGender; }
     public void setBreedAndGender(String breedAndGender) { this.breedAndGender = breedAndGender; }
@@ -75,3 +80,4 @@ public class Pet {
     public int getStat2IconResId() { return stat2IconResId; }
     public void setStat2IconResId(int stat2IconResId) { this.stat2IconResId = stat2IconResId; }
 }
+
