@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/plusjakartasansbold"
-                android:text="Alex Morgan"
+                android:text=""
                 android:textColor="@color/primary_black"
                 android:textSize="22sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/plus_jakarta_sans_regular"
-                android:text="alex.morgan@nordicpaws.com"
+                android:text=""
                 android:textColor="@color/neutral_slate"
                 android:textSize="14sp" />
 
