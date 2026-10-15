@@ -127,9 +127,6 @@ public class RoutineFragment extends Fragment {
 
         setupSwipeGestures();
 
-        // Seed initial data if Firestore is empty on first user login
-        firestoreManager.seedInitialPetsIfEmpty();
-
         loadPetsFromFirestore();
 
         return view;
