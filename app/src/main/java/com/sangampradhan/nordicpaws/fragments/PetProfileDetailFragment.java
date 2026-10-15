@@ -21,6 +21,7 @@ import com.sangampradhan.nordicpaws.utils.LocalStorageManager;
 public class PetProfileDetailFragment extends Fragment {
 
     private static final String ARG_PET_NAME = "pet_name";
+    private static final String ARG_PET_CATEGORY = "pet_category";
     private static final String ARG_PET_BREED = "pet_breed";
     private static final String ARG_PET_AGE = "pet_age";
     private static final String ARG_PET_WEIGHT = "pet_weight";
@@ -37,6 +38,7 @@ public class PetProfileDetailFragment extends Fragment {
         Bundle args = new Bundle();
         if (pet != null) {
             args.putString(ARG_PET_NAME, pet.getName());
+            args.putString(ARG_PET_CATEGORY, pet.getPetCategory() != null ? pet.getPetCategory() : "");
             args.putString(ARG_PET_BREED, pet.getBreedAndGender());
             args.putString(ARG_PET_AGE, pet.getTagAge());
             args.putString(ARG_PET_WEIGHT, pet.getStat1Val());
@@ -75,11 +77,11 @@ public class PetProfileDetailFragment extends Fragment {
         TextView tvPetDetailWeight = view.findViewById(R.id.tvPetDetailWeight);
 
         if (getArguments() != null) {
-            String name = getArguments().getString(ARG_PET_NAME, "Milo");
-            String breed = getArguments().getString(ARG_PET_BREED, "Golden Retriever");
-            String age = getArguments().getString(ARG_PET_AGE, "2 yrs");
-            String weight = getArguments().getString(ARG_PET_WEIGHT, "28.5 kg");
-            String status = getArguments().getString(ARG_PET_STATUS, "Healthy & Active");
+            String name = getArguments().getString(ARG_PET_NAME, "");
+            String category = getArguments().getString(ARG_PET_CATEGORY, "");
+            String breed = getArguments().getString(ARG_PET_BREED, "");
+            String age = getArguments().getString(ARG_PET_AGE, "");
+            String weight = getArguments().getString(ARG_PET_WEIGHT, "");
             String imagePath = getArguments().getString(ARG_PET_IMAGE_PATH, "");
             int avatarRes = getArguments().getInt(ARG_PET_AVATAR_RES, R.drawable.dog);
 
@@ -87,7 +89,11 @@ public class PetProfileDetailFragment extends Fragment {
             if (tvPetDetailBreed != null) tvPetDetailBreed.setText(breed);
             if (tvPetDetailAge != null) tvPetDetailAge.setText(age);
             if (tvPetDetailWeight != null) tvPetDetailWeight.setText(weight);
-            if (tvPetDetailStatus != null) tvPetDetailStatus.setText(status != null ? status : "Wellness Verified");
+            // Show pet category (Dog, Cat, etc.) — fall back to "Pet" if not set
+            if (tvPetDetailStatus != null) {
+                String displayCategory = (category != null && !category.isEmpty()) ? category : "Pet";
+                tvPetDetailStatus.setText(displayCategory);
+            }
 
             if (ivPetHeroPhoto != null) {
                 if (imagePath != null && !imagePath.isEmpty()) {
