@@ -17,7 +17,7 @@
   <img src="images/task_time_table.png" alt="User Profile Screen" width="200"/>
 </div>
 
-> Replace the placeholder images above with the actual screenshots placed under `images/`.
+> Screenshots of the app.
 
 ---
 
@@ -64,22 +64,7 @@ The app tackles several common problems for pet owners:
 
 ---
 
-## Screenshots
 
-> Screenshots of the app.
-
-![Splash Screen](images/home_screen.png)
-![Login Screen](images/login_screen.png)
-![Dashboard Overview](images/dashboard.png)
-![Pet List](images/pet_list.png)
-![Add New Pet](images/add_pet.png)
-![Pet Profile Detail](images/pet_profile.png)
-![Pet Tasks / Routine](images/pet_tasks.png)
-![Delegation Screen](images/delegated_message.png)
-![Swipe Gestures](images/swipe_guestures.png)
-![User Profile Screen](images/task_time_table.png)
-
----
 
 ## Getting Started
 
