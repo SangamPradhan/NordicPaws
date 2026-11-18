@@ -13,9 +13,7 @@
   <img src="images/add_pet.png" alt="Add New Pet Form" width="200"/>
 </div>
 
-> Replace the placeholder images above with the actual screenshots placed under `images/`.
 
----
 
 ## Project Description
 
@@ -62,7 +60,6 @@ The app tackles several common problems for pet owners:
 
 ## Screenshots
 
-> Ensure the filenames in the `images/` folder match the ones used below.
 
 ![Home Screen](images/home_screen.png)
 ![Login Screen](images/login_screen.png)
