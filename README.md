@@ -6,11 +6,11 @@
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
   <img src="images/home_screen.png" alt="Home Screen" width="200"/>
-  <img src="images/pet_profile_list.png" alt="Pet Profile List" width="200"/>
-  <img src="images/pet_profile_detail.png" alt="Pet Profile Detail" width="200"/>
-  <img src="images/routine_fragment.png" alt="Routine Fragment" width="200"/>
-  <img src="images/add_task.png" alt="Add Routine Task" width="200"/>
-  <img src="images/profile_fragment.png" alt="Profile Fragment" width="200"/>
+  <img src="images/login_screen.png" alt="Login Screen" width="200"/>
+  <img src="images/dashboard.png" alt="Dashboard Overview" width="200"/>
+  <img src="images/pet_profile.png" alt="Pet Profile Detail" width="200"/>
+  <img src="images/pet_tasks.png" alt="Pet Tasks / Routine" width="200"/>
+  <img src="images/add_pet.png" alt="Add New Pet Form" width="200"/>
 </div>
 
 > Replace the placeholder images above with the actual screenshots placed under `images/`.
@@ -62,14 +62,14 @@ The app tackles several common problems for pet owners:
 
 ## Screenshots
 
-> Add the real screenshots in the `images/` folder and ensure the filenames match the ones used above.
+> Ensure the filenames in the `images/` folder match the ones used below.
 
 ![Home Screen](images/home_screen.png)
-![Pet Profile List](images/pet_profile_list.png)
-![Pet Profile Detail](images/pet_profile_detail.png)
-![Routine Fragment](images/routine_fragment.png)
-![Add Routine Task](images/add_task.png)
-![Profile Fragment](images/profile_fragment.png)
+![Login Screen](images/login_screen.png)
+![Dashboard Overview](images/dashboard.png)
+![Pet Profile Detail](images/pet_profile.png)
+![Pet Tasks / Routine](images/pet_tasks.png)
+![Add New Pet Form](images/add_pet.png)
 
 ---
 
