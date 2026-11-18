@@ -5,15 +5,21 @@
 ## Demo Overview (Screenshots)
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-  <img src="images/home_screen.png" alt="Home Screen" width="200"/>
+  <img src="images/home_screen.png" alt="Splash Screen" width="200"/>
   <img src="images/login_screen.png" alt="Login Screen" width="200"/>
   <img src="images/dashboard.png" alt="Dashboard Overview" width="200"/>
+  <img src="images/pet_list.png" alt="Pet List" width="200"/>
+  <img src="images/add_pet.png" alt="Add New Pet" width="200"/>
   <img src="images/pet_profile.png" alt="Pet Profile Detail" width="200"/>
   <img src="images/pet_tasks.png" alt="Pet Tasks / Routine" width="200"/>
-  <img src="images/add_pet.png" alt="Add New Pet Form" width="200"/>
+  <img src="images/delegated_message.png" alt="Delegation Screen" width="200"/>
+  <img src="images/swipe_guestures.png" alt="Swipe Gestures" width="200"/>
+  <img src="images/task_time_table.png" alt="User Profile Screen" width="200"/>
 </div>
 
+> Replace the placeholder images above with the actual screenshots placed under `images/`.
 
+---
 
 ## Project Description
 
@@ -60,13 +66,18 @@ The app tackles several common problems for pet owners:
 
 ## Screenshots
 
+> Screenshots of the app.
 
-![Home Screen](images/home_screen.png)
+![Splash Screen](images/home_screen.png)
 ![Login Screen](images/login_screen.png)
 ![Dashboard Overview](images/dashboard.png)
+![Pet List](images/pet_list.png)
+![Add New Pet](images/add_pet.png)
 ![Pet Profile Detail](images/pet_profile.png)
 ![Pet Tasks / Routine](images/pet_tasks.png)
-![Add New Pet Form](images/add_pet.png)
+![Delegation Screen](images/delegated_message.png)
+![Swipe Gestures](images/swipe_guestures.png)
+![User Profile Screen](images/task_time_table.png)
 
 ---
 
